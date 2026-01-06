@@ -20,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
   return (
     <footer className="bg-slate-950 border-t border-slate-800 relative">
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pb-24">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
@@ -117,14 +117,10 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
 
       {/* Bottom Bar */}
       <div className="border-t border-slate-800 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-center relative">
-          {/* Copyright */}
-          <p className="text-gray-400 text-sm text-center">
-            © {currentYear} Hesbon Angwenyi. All rights reserved.
-          </p>
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center relative">
+          
           {/* Floating Social Icons Above Footer */}
-          <div className="absolute left-1/2 -top-6 transform -translate-x-1/2 flex items-center gap-4 bg-slate-950 px-20 py-3 rounded-full shadow-lg">
+          <div className="absolute left-1/2 -top-10 transform -translate-x-1/2 flex items-center gap-4 bg-slate-950 px-20 py-3 rounded-full shadow-lg">
             <a href="https://github.com/hesbonangwenyi606" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
               <FaGithub className="w-10 h-10" />
             </a>
@@ -138,6 +134,11 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
               <FaWhatsapp className="w-10 h-10 text-green-500" />
             </a>
           </div>
+
+          {/* Copyright */}
+          <p className="text-gray-400 text-sm text-center mt-16">
+            © {currentYear} Hesbon Angwenyi. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
