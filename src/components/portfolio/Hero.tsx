@@ -37,7 +37,7 @@ const useCountUp = (target: number, duration = 2000) => {
 };
 
 const terminalLines = [
-  '$ whoami',
+  '$ who am i',
   'hesbon_angwenyi',
   '$ cat profile.txt',
   'DevOps Engineer | Cloud Architect | CI/CD & Cloud Automation Specialist',
