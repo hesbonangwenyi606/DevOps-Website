@@ -41,12 +41,12 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 lg:py-32 bg-slate-9000">
-      <div className="max-w-15xl mx-auto px-10 sm:px-14 lg:px-18">
+    <section id="about" className="py-20 lg:py-32 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-10 sm:px-14 lg:px-18">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
           <div className="relative">
-            <div className="relative z-20">
+            <div className="relative z-10">
               <img
                 src="https://devops.tiiny.site/devOps.jpg"
                 alt="Hesbon Angwenyi"
