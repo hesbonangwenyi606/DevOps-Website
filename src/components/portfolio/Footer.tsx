@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaPhone } from 'react-icons/fa';
 
 interface FooterProps {
   onContactClick: () => void;
@@ -130,11 +130,11 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
             <a href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
               <FaLinkedin className="w-5 h-5" />
             </a>
-            <a href="tel:+254743573380" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
-              <FaPhone className="w-5 h-5" />
+            <a href="https://wa.me/254743573380" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
+              <FaWhatsapp className="w-5 h-5 text-green-500" />
             </a>
-            <a href="mailto:hesbonmanyinsa96@gmail.com" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
-              <FaEnvelope className="w-5 h-5" />
+            <a href="https://wa.me/254743573380" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
+              <FaWhatsapp className="w-5 h-5 text-green-500" />
             </a>
           </div>
         </div>
