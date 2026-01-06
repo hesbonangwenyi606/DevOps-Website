@@ -117,7 +117,7 @@ const About: React.FC = () => {
             {/* Download Resume Button */}
             <div className="mt-8">
               <a
-                href="/home/hesbonangwenyi/HESBON CV.pdf"
+                href="pdftolink.io/pdf/r2_dXNlcnMvZ3Vlc3QvZDU4Y2YyMDMtYzYzMy00ODQ4LWE5ZTEtZDI0MTZlYWRiMzI3LnBkZg"
                 download
                 className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 border border-slate-700 text-white rounded-xl font-medium hover:bg-slate-700 hover:border-purple-500/50 transition-all duration-300"
               >
