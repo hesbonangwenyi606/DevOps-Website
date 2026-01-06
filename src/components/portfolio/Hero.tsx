@@ -84,7 +84,7 @@ const terminalLines = [
   '$ ./deploy_projects.sh',
   'Projects: Infrastructure as Code, Kubernetes Clusters, CI/CD Pipelines, Cloud Automation, Monitoring & Logging',
   '$ ./skills_summary.sh',
-  'Skills: AWS | Azure | GCP | Docker | Kubernetes | Terraform | Python | Bash | CI/CD | GitOps',
+  'Skills: AWS | Azure| Docker | Kubernetes | Terraform | Python | Bash | CI/CD | GitOps',
   '$ ./career_focus.sh',
   'Passionate about optimizing cloud systems, reducing deployment times, and enabling high-performing teams',
 ];
