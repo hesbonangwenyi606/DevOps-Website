@@ -17,7 +17,9 @@ interface HeroProps {
   onContactClick: () => void;
 }
 
-/* Count-Up Hook */
+/* =========================
+   COUNT UP HOOK
+========================= */
 const useCountUp = (target: number, duration = 2000) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -37,16 +39,9 @@ const useCountUp = (target: number, duration = 2000) => {
   return count;
 };
 
-/* Floating DevOps Icons - Centered */
-const floatingIcons = [
-  { Icon: FaDocker, top: '20%', left: '45%' },
-  { Icon: SiKubernetes, top: '30%', left: '55%' },
-  { Icon: FaAws, top: '50%', left: '40%' },
-  { Icon: SiTerraform, top: '60%', left: '50%' },
-  { Icon: SiGithubactions, top: '40%', left: '60%' },
-  { Icon: FaLinux, top: '55%', left: '45%' },
-];
-
+/* =========================
+   TERMINAL LINES
+========================= */
 const terminalLines = [
   '$ who am i',
   'hesbon_angwenyi',
@@ -58,7 +53,22 @@ const terminalLines = [
   'Ready to build scalable infrastructure...',
 ];
 
+/* =========================
+   FLOATING ICONS
+========================= */
+const floatingIcons = [
+  { Icon: FaDocker, top: '20%', left: '45%' },
+  { Icon: SiKubernetes, top: '30%', left: '55%' },
+  { Icon: FaAws, top: '50%', left: '40%' },
+  { Icon: SiTerraform, top: '60%', left: '50%' },
+  { Icon: SiGithubactions, top: '40%', left: '60%' },
+  { Icon: FaLinux, top: '55%', left: '45%' },
+];
+
 const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
+  /* =========================
+     TERMINAL TYPING (CONTINUOUS)
+  ========================== */
   const [displayText, setDisplayText] = useState('');
   const currentLine = useRef(0);
   const charIndex = useRef(0);
@@ -66,12 +76,9 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
   const startTyping = () => {
     typingInterval.current = setInterval(() => {
-      if (currentLine.current >= terminalLines.length) {
-        clearInterval(typingInterval.current!);
-        return;
-      }
       const line = terminalLines[currentLine.current];
       if (charIndex.current <= line.length) {
+        // Update current line
         setDisplayText((prev) => {
           const lines = prev.split('\n');
           lines[currentLine.current] = line.slice(0, charIndex.current);
@@ -79,9 +86,16 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         });
         charIndex.current++;
       } else {
+        // Move to next line
         charIndex.current = 0;
         currentLine.current++;
-        setDisplayText((prev) => prev + '\n');
+        if (currentLine.current >= terminalLines.length) {
+          // Loop back
+          currentLine.current = 0;
+          setDisplayText('');
+        } else {
+          setDisplayText((prev) => prev + '\n');
+        }
       }
     }, 50);
   };
@@ -93,18 +107,23 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
     };
   }, []);
 
-  /* Count-Up Stats */
+  /* =========================
+     COUNT-UP STATS
+  ========================== */
   const projects = useCountUp(15);
   const technologies = useCountUp(20);
   const certs = useCountUp(5);
 
+  /* =========================
+     SCROLL TO PROJECTS
+  ========================== */
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020617]" id="hero">
       {/* Background */}
       <div className="absolute inset-0">
         <div
@@ -131,7 +150,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
 
-        {/* Floating DevOps Icons - Centered */}
+        {/* Floating DevOps Icons */}
         {floatingIcons.map(({ Icon, ...pos }, i) => (
           <motion.div
             key={i}
@@ -186,10 +205,10 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
             {/* Social Icons */}
             <div className="flex gap-4 mt-8 justify-center lg:justify-start">
-              <FaGithub size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={() => window.open('https://github.com/hesbonangwenyi606', '_blank')} />
-              <FaLinkedin size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/', '_blank')} />
-              <FaTwitter size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={() => window.open('https://twitter.com/hesbonangwenyi', '_blank')} />
-              <FaEnvelope size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={onContactClick} />
+              <FaGithub size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://github.com/hesbonangwenyi606', '_blank')} />
+              <FaLinkedin size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/', '_blank')} />
+              <FaTwitter size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://twitter.com/hesbonangwenyi', '_blank')} />
+              <FaEnvelope size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={onContactClick} />
             </div>
           </div>
 
