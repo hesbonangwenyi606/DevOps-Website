@@ -153,11 +153,11 @@ const Education: React.FC = () => {
                   <div className="text-gray-400 text-sm">Hours of Training</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800/50 rounded-xl">
-                  <div className="text-3xl font-bold text-white">15+</div>
+                  <div className="text-3xl font-bold text-white">20+</div>
                   <div className="text-gray-400 text-sm">Projects Completed</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800/50 rounded-xl">
-                  <div className="text-3xl font-bold text-white">20+</div>
+                  <div className="text-3xl font-bold text-white">12+</div>
                   <div className="text-gray-400 text-sm">Technologies Learned</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800/50 rounded-xl">
