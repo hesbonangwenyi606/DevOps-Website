@@ -4,6 +4,9 @@ import {
   FaDocker,
   FaAws,
   FaLinux,
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
 } from "react-icons/fa";
 import {
   SiKubernetes,
@@ -79,7 +82,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020617]"
     >
-      {/* MATRIX GRID BACKGROUND */}
+      {/* MATRIX GRID */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(34,211,238,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.06)_1px,transparent_1px)] bg-[size:50px_50px]" />
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/95 to-purple-900/40" />
@@ -89,14 +92,10 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
       {floatingIcons.map(({ Icon, ...pos }, i) => (
         <motion.div
           key={i}
-          className="absolute text-cyan-400/30 z-0"
+          className="absolute text-cyan-400/30"
           style={pos as React.CSSProperties}
-          animate={{ y: [0, -12, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            delay: i * 0.3,
-          }}
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
         >
           <Icon size={42} />
         </motion.div>
@@ -110,7 +109,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
       >
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* LEFT CONTENT */}
+          {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -137,23 +136,49 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
             <p className="text-slate-400 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
               Fresh graduate from Flatiron School 2025, passionate about building
-              scalable, automated infrastructure and CI/CD pipelines that empower
-              teams to ship faster.
+              scalable, automated infrastructure and CI/CD pipelines.
             </p>
 
+            {/* CTA */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={scrollToProjects}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:-translate-y-1"
+                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-xl hover:shadow-cyan-500/30 transition-all hover:-translate-y-1"
               >
                 View My Work
               </button>
 
               <button
                 onClick={onContactClick}
-                className="px-8 py-4 border border-cyan-400/40 text-white rounded-xl font-semibold text-lg hover:bg-cyan-400/10 transition-all"
+                className="px-8 py-4 border border-cyan-400/40 text-white rounded-xl font-semibold hover:bg-cyan-400/10 transition-all"
               >
                 Contact Me
+              </button>
+            </div>
+
+            {/* SOCIAL ICONS */}
+            <div className="flex gap-4 mt-8 justify-center lg:justify-start">
+              <a
+                href="https://github.com/hesbonangwenyi606"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-lg bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400/50 transition"
+              >
+                <FaGithub size={22} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-lg bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400/50 transition"
+              >
+                <FaLinkedin size={22} />
+              </a>
+              <button
+                onClick={onContactClick}
+                className="w-12 h-12 rounded-lg bg-slate-800/50 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400/50 transition"
+              >
+                <FaEnvelope size={22} />
               </button>
             </div>
           </motion.div>
@@ -184,29 +209,29 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
                 </pre>
               </div>
             </div>
+
+            {/* STATS */}
+            <div className="grid grid-cols-3 gap-4 mt-6">
+              {[
+                { value: "15+", label: "Projects" },
+                { value: "20+", label: "Technologies" },
+                { value: "5+", label: "Certifications" },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="bg-slate-800/50 backdrop-blur rounded-xl p-4 border border-slate-700 text-center"
+                >
+                  <div className="text-2xl font-bold text-white">
+                    {stat.value}
+                  </div>
+                  <div className="text-slate-400 text-sm">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
-      </motion.div>
-
-      {/* SCROLL INDICATOR */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 12, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      >
-        <svg
-          className="w-6 h-6 text-slate-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
       </motion.div>
     </section>
   );
