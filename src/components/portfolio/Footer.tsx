@@ -128,7 +128,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
               <FaLinkedin className="w-8 h-8" />
             </a>
             <a href="https://x.com/hesbonmanyi254" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
-              <SiX className="w-10 h-10" />
+              <SiX className="w-8 h-8" />
             </a>
             <a href="https://wa.me/254743573380" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
               <FaWhatsapp className="w-10 h-10 text-green-500" />
