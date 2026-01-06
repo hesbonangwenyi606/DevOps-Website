@@ -65,7 +65,7 @@ const Contact: React.FC<ContactProps> = ({ isOpen, onClose }) => {
           {/* Contact Info Cards */}
           <div className="grid sm:grid-cols-3 gap-4 mb-8">
             <a
-              href="mailto:hesbon.angwenyi@email.com"
+              href="mailto:hesbonmanyinsa96@gmail.com"
               className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-700 transition-colors group"
             >
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
