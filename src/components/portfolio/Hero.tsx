@@ -173,8 +173,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
             <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-300">DevOps Engineer & Cloud Architect</h2>
 
             <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0">
-              Fresh graduate from Flatiron School 2025, passionate about building scalable, automated
-              infrastructure and CI/CD pipelines that empower development teams to ship faster.
+              "DevOps Engineer & Cloud Architect transforming cloud infrastructure and CI/CD pipelines into scalable, automated, and resilient systems. Passionate about accelerating deployments, reducing downtime, and enabling teams to deliver high-impact solutions efficiently."
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
