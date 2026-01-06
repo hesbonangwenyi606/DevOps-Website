@@ -46,7 +46,7 @@ const About: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
           <div className="relative">
-            <div className="relative z-10">
+            <div className="relative z-20">
               <img
                 src="https://devops.tiiny.site/devOps.jpg"
                 alt="Hesbon Angwenyi"
