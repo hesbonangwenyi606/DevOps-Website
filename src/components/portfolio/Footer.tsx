@@ -82,15 +82,13 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
                 Nairobi, Kenya
               </li>
 
-              {/* WhatsApp Number */}
+              {/* Phone Number */}
               <li className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300">
-                <svg className="w-5 h-5 flex-shrink-0 text-green-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.52 3.48A11.91 11.91 0 0012 0C5.373 0 0 5.373 0 12a11.92 11.92 0 001.66 6.02L0 24l6.05-1.58A11.92 11.92 0 0012 24c6.627 0 12-5.373 12-12a11.91 11.91 0 00-3.48-8.52zm-8.52 18c-1.94 0-3.83-.52-5.45-1.5l-.39-.23-3.6.94.96-3.51-.25-.39A9.931 9.931 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.44-7.56c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.33.22-.61.07-.27-.15-1.14-.42-2.17-1.33-.8-.71-1.34-1.59-1.5-1.87-.16-.28-.02-.43.13-.57.13-.13.3-.33.45-.5.15-.17.2-.28.3-.47.1-.2.05-.37-.03-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.04 1.01-1.04 2.46s1.07 2.85 1.22 3.05c.15.2 2.1 3.2 5.1 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.08-.12-.3-.2-.6-.35z" />
+                <svg className="w-5 h-5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.48 4.43a1 1 0 01-.21 1.04l-2.2 2.2a11.042 11.042 0 005.516 5.516l2.2-2.2a1 1 0 011.04-.21l4.43 1.48a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C7.373 21 3 16.627 3 11V5z" />
                 </svg>
                 <a
-                  href="https://wa.me/254743573380"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="tel:+254743573380"
                   className="flex-1 hover:text-white transition-colors"
                 >
                   +254 743 573 380
