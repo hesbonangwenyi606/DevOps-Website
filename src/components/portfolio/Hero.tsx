@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   FaDocker,
   FaAws,
   FaLinux,
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
   FaServer,
   FaCloud,
-} from "react-icons/fa";
-import { SiKubernetes, SiTerraform, SiGithubactions } from "react-icons/si";
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaEnvelope,
+} from 'react-icons/fa';
+import { SiKubernetes, SiTerraform, SiGithubactions } from 'react-icons/si';
 
-/* =========================
-   COUNT UP HOOK (Optimized)
-========================= */
+interface HeroProps {
+  onContactClick: () => void;
+}
+
+/* Count-Up Hook */
 const useCountUp = (target: number, duration = 2000) => {
   const [count, setCount] = useState(0);
-
   useEffect(() => {
     let start = 0;
     const increment = Math.ceil(target / (duration / 30));
@@ -30,224 +32,264 @@ const useCountUp = (target: number, duration = 2000) => {
         setCount(start);
       }
     }, 30);
-
     return () => clearInterval(interval);
   }, [target, duration]);
-
   return count;
 };
 
-/* =========================
-   TERMINAL COMPONENT
-========================= */
-const terminalLines = [
-  "$ whoami",
-  "hesbon_angwenyi",
-  "$ kubectl get nodes",
-  "node-1   Ready",
-  "node-2   Ready",
-  "$ terraform apply",
-  "Infrastructure successfully provisioned 🚀",
-  "$ aws eks list-clusters",
-  "prod-cluster",
+/* Floating DevOps Icons Positions */
+const floatingIcons = [
+  { Icon: FaDocker, top: '10%', left: '8%' },
+  { Icon: SiKubernetes, top: '25%', right: '12%' },
+  { Icon: FaAws, bottom: '35%', left: '10%' },
+  { Icon: SiTerraform, bottom: '20%', right: '15%' },
+  { Icon: SiGithubactions, top: '55%', left: '18%' },
+  { Icon: FaLinux, bottom: '10%', left: '45%' },
 ];
 
-const Terminal: React.FC = () => {
-  const [terminalText, setTerminalText] = useState("");
-  const [lineIndex, setLineIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [fade, setFade] = useState(false);
+const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentLine, setCurrentLine] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+
+  const terminalLines = [
+    '$ who am i',
+    'hesbon_angwenyi',
+    '$ cat profession.txt',
+    'DevOps Engineer | Cloud Architect',
+    '$ echo $SCHOOL',
+    ' Flatiron School  2025',
+    '$ ./start_journey.sh',
+    'Ready to build scalable infrastructure...',
+  ];
 
   useEffect(() => {
-    const currentLine = terminalLines[lineIndex];
-    if (!currentLine) {
-      // Fade out and reset
-      setTimeout(() => {
-        setFade(true);
-        setTimeout(() => {
-          setTerminalText("");
-          setLineIndex(0);
-          setCharIndex(0);
-          setFade(false);
-        }, 500);
-      }, 2000);
+    if (currentLine >= terminalLines.length) {
+      setIsTyping(false);
       return;
     }
 
-    const timeout = setTimeout(() => {
-      if (charIndex < currentLine.length) {
-        setTerminalText((prev) => prev + currentLine[charIndex]);
-        setCharIndex(charIndex + 1);
+    const line = terminalLines[currentLine];
+    let charIndex = 0;
+
+    const typeInterval = setInterval(() => {
+      if (charIndex <= line.length) {
+        setDisplayText((prev) => {
+          const lines = prev.split('\n');
+          lines[currentLine] = line.slice(0, charIndex);
+          return lines.join('\n');
+        });
+        charIndex++;
       } else {
-        setTerminalText((prev) => prev + "\n");
-        setLineIndex(lineIndex + 1);
-        setCharIndex(0);
+        clearInterval(typeInterval);
+        setTimeout(() => {
+          setDisplayText((prev) => prev + '\n');
+          setCurrentLine((prev) => prev + 1);
+        }, 500);
       }
-    }, 40);
+    }, 50);
 
-    return () => clearTimeout(timeout);
-  }, [charIndex, lineIndex]);
+    return () => clearInterval(typeInterval);
+  }, [currentLine]);
 
-  return (
-    <motion.div
-      className={`bg-black/80 border border-cyan-400/30 rounded-2xl shadow-[0_0_60px_rgba(34,211,238,0.3)] transition-opacity duration-500 ${
-        fade ? "opacity-0" : "opacity-100"
-      }`}
-    >
-      <div className="px-4 py-2 border-b border-cyan-400/20 text-slate-400 text-sm font-mono">
-        hesbon@cloud:~
-      </div>
-      <pre
-        className="p-4 font-mono text-green-400 text-sm whitespace-pre-wrap"
-        aria-live="polite"
-      >
-        {terminalText}
-        <span className="animate-pulse">█</span>
-      </pre>
-    </motion.div>
-  );
-};
-
-/* =========================
-   FLOATING ICONS COMPONENT
-========================= */
-const floatingIcons = [
-  { Icon: FaDocker, top: "10%", left: "8%" },
-  { Icon: SiKubernetes, top: "25%", right: "12%" },
-  { Icon: FaAws, bottom: "35%", left: "10%" },
-  { Icon: SiTerraform, bottom: "20%", right: "15%" },
-  { Icon: SiGithubactions, top: "55%", left: "18%" },
-  { Icon: FaLinux, bottom: "10%", left: "45%" },
-];
-
-const FloatingIcons: React.FC = () => (
-  <>
-    {floatingIcons.map(({ Icon, ...pos }, i) => (
-      <motion.div
-        key={i}
-        className="absolute text-cyan-400/30"
-        style={pos as React.CSSProperties}
-        animate={{ y: [0, -18, 0] }}
-        transition={{ duration: 4, repeat: Infinity, delay: i * 0.4 }}
-      >
-        <Icon size={40} />
-      </motion.div>
-    ))}
-  </>
-);
-
-/* =========================
-   SOCIAL LINKS COMPONENT
-========================= */
-const SocialLinks: React.FC<{ onContactClick: () => void }> = ({ onContactClick }) => (
-  <div className="flex gap-4 mb-10">
-    <a
-      href="https://github.com/hesbonangwenyi606"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <FaGithub className="text-2xl text-slate-400 hover:text-white transition-colors" />
-    </a>
-    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-      <FaLinkedin className="text-2xl text-slate-400 hover:text-white transition-colors" />
-    </a>
-    <button onClick={onContactClick}>
-      <FaEnvelope className="text-2xl text-slate-400 hover:text-white transition-colors" />
-    </button>
-  </div>
-);
-
-/* =========================
-   STATS COMPONENT
-========================= */
-const Stats: React.FC = () => {
+  /* Count-Up Stats */
   const projects = useCountUp(15);
   const technologies = useCountUp(20);
   const certs = useCountUp(5);
 
+  const scrollToProjects = () => {
+    const element = document.getElementById('projects');
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="grid grid-cols-3 gap-4">
-      {[
-        { value: projects, label: "Projects" },
-        { value: technologies, label: "Technologies" },
-        { value: certs, label: "Certifications" },
-      ].map((stat, i) => (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="hero">
+      {/* Background */}
+      <div className="absolute inset-0">
         <div
-          key={i}
-          className="bg-slate-800/60 border border-slate-700 rounded-xl p-4 text-center hover:scale-105 transition-transform"
-        >
-          <div className="text-3xl font-bold text-white">{stat.value}+</div>
-          <div className="text-slate-400 text-sm">{stat.label}</div>
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{
+            backgroundImage: `url('https://d64gsuwffb70l.cloudfront.net/695cc9c2458cbb190ad7e869_1767688827715_b30ea45d.png')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/95 to-purple-900/50" />
+
+        {/* Animated Grid */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="h-full w-full"
+            style={{
+              backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+                               linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)`,
+              backgroundSize: '50px 50px',
+            }}
+          />
         </div>
-      ))}
-    </div>
+
+        {/* Floating Particles */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+
+        {/* Floating DevOps Icons */}
+        {floatingIcons.map(({ Icon, ...pos }, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-cyan-400/30"
+            style={pos as React.CSSProperties}
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
+          >
+            <Icon size={40} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="text-center lg:text-left space-y-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></span>
+              <span className="text-purple-300 text-sm font-medium">
+                Available for opportunities
+              </span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+              Hi, I'm{' '}
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Hesbon Angwenyi
+              </span>
+            </h1>
+
+            <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-300">
+              DevOps Engineer & Cloud Architect
+            </h2>
+
+            <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0">
+              Fresh graduate from Flatiron School 2025, passionate about
+              building scalable, automated infrastructure and CI/CD pipelines
+              that empower development teams to ship faster.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button
+                onClick={scrollToProjects}
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2"
+              >
+                View My Work
+              </button>
+              <button
+                onClick={onContactClick}
+                className="px-8 py-4 border-2 border-purple-500/50 text-white rounded-xl font-semibold text-lg hover:bg-purple-500/10 transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                Contact Me
+              </button>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-4 mt-8 justify-center lg:justify-start">
+              <a
+                href="https://github.com/hesbonangwenyi606"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaGithub size={28} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaLinkedin size={28} />
+              </a>
+              <a
+                href="https://twitter.com/hesbonangwenyi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaTwitter size={28} />
+              </a>
+              <button
+                onClick={onContactClick}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <FaEnvelope size={28} />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Content - Terminal + Stats + AWS/K8s */}
+          <div className="hidden lg:block space-y-6">
+            {/* Terminal */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden shadow-2xl shadow-purple-500/10">
+                <div className="flex items-center gap-2 px-4 py-3 bg-slate-900/50 border-b border-slate-700">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <span className="ml-4 text-gray-400 text-sm font-mono">
+                    hesbon@devops:~
+                  </span>
+                </div>
+                <div className="p-6 font-mono text-sm">
+                  <pre className="text-green-400 whitespace-pre-wrap">
+                    {displayText}
+                    {isTyping && (
+                      <span className="inline-block w-2 h-5 bg-green-400 animate-pulse ml-1"></span>
+                    )}
+                  </pre>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="grid grid-cols-3 gap-4">
+              {[
+                { value: projects, label: 'Projects' },
+                { value: technologies, label: 'Technologies' },
+                { value: certs, label: 'Certifications' },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center hover:scale-105 transition-transform"
+                >
+                  <div className="text-2xl font-bold text-white">{stat.value}+</div>
+                  <div className="text-gray-400 text-sm">{stat.label}</div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* AWS / K8s Icons */}
+            <div className="flex justify-between items-center mt-6">
+              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="flex flex-col items-center text-cyan-400">
+                <FaCloud size={40} />
+                <span className="text-xs text-gray-400 mt-1">AWS</span>
+              </motion.div>
+              <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="flex flex-col items-center text-blue-400">
+                <SiKubernetes size={40} />
+                <span className="text-xs text-gray-400 mt-1">Kubernetes</span>
+              </motion.div>
+              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="flex flex-col items-center text-purple-400">
+                <FaServer size={40} />
+                <span className="text-xs text-gray-400 mt-1">Services</span>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </div>
+    </section>
   );
 };
-
-/* =========================
-   HERO COMPONENT
-========================= */
-const Hero: React.FC<{ onContactClick: () => void }> = ({ onContactClick }) => (
-  <section
-    id="hero"
-    className="relative min-h-screen overflow-hidden bg-[#020617] flex items-center"
-  >
-    {/* MATRIX GRID */}
-    <div className="absolute inset-0">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(34,211,238,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.05)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/90 to-purple-900/40" />
-    </div>
-
-    <FloatingIcons />
-
-    <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-      {/* LEFT */}
-      <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }}>
-        <h1 className="text-5xl font-bold text-white mb-4">
-          Hesbon{" "}
-          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            Angwenyi
-          </span>
-        </h1>
-
-        <h2 className="text-2xl text-slate-300 mb-6">
-          DevOps Engineer • Cloud • Kubernetes
-        </h2>
-
-        <p className="text-slate-400 max-w-xl mb-8">
-          Automating infrastructure, deploying cloud-native applications, and designing
-          scalable Kubernetes platforms.
-        </p>
-
-        <SocialLinks onContactClick={onContactClick} />
-
-        <Stats />
-      </motion.div>
-
-      {/* RIGHT */}
-      <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-        <Terminal />
-
-        {/* AWS / K8s ARCHITECTURE */}
-        <div className="relative bg-slate-900/60 border border-slate-700 rounded-2xl p-6 flex justify-between items-center">
-          <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }}>
-            <FaCloud className="text-4xl text-cyan-400" />
-            <p className="text-xs text-center text-slate-400 mt-1">AWS</p>
-          </motion.div>
-
-          <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2 }}>
-            <SiKubernetes className="text-4xl text-blue-400" />
-            <p className="text-xs text-center text-slate-400 mt-1">Kubernetes</p>
-          </motion.div>
-
-          <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }}>
-            <FaServer className="text-4xl text-purple-400" />
-            <p className="text-xs text-center text-slate-400 mt-1">Services</p>
-          </motion.div>
-        </div>
-      </motion.div>
-    </div>
-  </section>
-);
 
 export default Hero;
