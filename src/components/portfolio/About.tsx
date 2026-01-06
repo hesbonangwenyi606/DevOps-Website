@@ -48,17 +48,13 @@ const About: React.FC = () => {
           
           {/* Image Side */}
           <div className="relative">
-            <motion.div
-              className="relative z-10"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
+            <div className="relative z-10">
               <img
                 src="https://devops.tiiny.site/devOps.jpg"
                 alt="Hesbon Angwenyi"
                 className="rounded-2xl shadow-2xl shadow-purple-500/20 w-full max-w-lg mx-auto"
               />
-            </motion.div>
+            </div>
             
             {/* Decorative Elements */}
             <div className="absolute -top-4 -left-4 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl -z-0"></div>
