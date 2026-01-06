@@ -10,12 +10,12 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   const [isTyping, setIsTyping] = useState(true);
 
   const terminalLines = [
-    '$ whoami',
+    '$ who am i',
     'hesbon_angwenyi',
     '$ cat profession.txt',
     'DevOps Engineer | Cloud Architect',
     '$ echo $SCHOOL',
-    'Moringa School (Flatiron) 2025',
+    ' Flatiron School  2025',
     '$ ./start_journey.sh',
     'Ready to build scalable infrastructure...',
   ];
