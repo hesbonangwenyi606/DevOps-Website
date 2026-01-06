@@ -98,8 +98,8 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
     return () => clearInterval(cursorInterval);
   }, []);
 
-  const projects = useCountUp(15);
-  const technologies = useCountUp(20);
+  const projects = useCountUp(20);
+  const technologies = useCountUp(12);
   const certs = useCountUp(5);
 
   const scrollToProjects = () => {
