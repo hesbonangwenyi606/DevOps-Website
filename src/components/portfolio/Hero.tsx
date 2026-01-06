@@ -37,14 +37,14 @@ const useCountUp = (target: number, duration = 2000) => {
   return count;
 };
 
-/* Floating DevOps Icons Positions */
+/* Floating DevOps Icons - Centered */
 const floatingIcons = [
-  { Icon: FaDocker, top: '10%', left: '8%' },
-  { Icon: SiKubernetes, top: '25%', right: '12%' },
-  { Icon: FaAws, bottom: '35%', left: '10%' },
-  { Icon: SiTerraform, bottom: '20%', right: '15%' },
-  { Icon: SiGithubactions, top: '55%', left: '18%' },
-  { Icon: FaLinux, bottom: '10%', left: '45%' },
+  { Icon: FaDocker, top: '20%', left: '45%' },
+  { Icon: SiKubernetes, top: '30%', left: '55%' },
+  { Icon: FaAws, top: '50%', left: '40%' },
+  { Icon: SiTerraform, top: '60%', left: '50%' },
+  { Icon: SiGithubactions, top: '40%', left: '60%' },
+  { Icon: FaLinux, top: '55%', left: '45%' },
 ];
 
 const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
@@ -130,16 +130,16 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
 
-        {/* Floating DevOps Icons */}
+        {/* Floating DevOps Icons - Centered */}
         {floatingIcons.map(({ Icon, ...pos }, i) => (
           <motion.div
             key={i}
             className="absolute text-cyan-400/30"
             style={pos as React.CSSProperties}
-            animate={{ y: [0, -15, 0] }}
+            animate={{ y: [0, -15, 0], rotate: [0, 10, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
           >
-            <Icon size={40} />
+            <Icon size={60} />
           </motion.div>
         ))}
       </div>
@@ -195,7 +195,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaGithub size={28} />
+                <FaGithub size={36} />
               </a>
               <a
                 href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/"
@@ -203,7 +203,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaLinkedin size={28} />
+                <FaLinkedin size={36} />
               </a>
               <a
                 href="https://twitter.com/hesbonangwenyi"
@@ -211,13 +211,13 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaTwitter size={28} />
+                <FaTwitter size={36} />
               </a>
               <button
                 onClick={onContactClick}
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <FaEnvelope size={28} />
+                <FaEnvelope size={36} />
               </button>
             </div>
           </div>
@@ -263,18 +263,18 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
               ))}
             </motion.div>
 
-            {/* AWS / K8s Icons */}
+            {/* AWS / K8s / Services Icons */}
             <div className="flex justify-between items-center mt-6">
               <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="flex flex-col items-center text-cyan-400">
-                <FaCloud size={40} />
+                <FaCloud size={50} />
                 <span className="text-xs text-gray-400 mt-1">AWS</span>
               </motion.div>
               <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="flex flex-col items-center text-blue-400">
-                <SiKubernetes size={40} />
+                <SiKubernetes size={50} />
                 <span className="text-xs text-gray-400 mt-1">Kubernetes</span>
               </motion.div>
               <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="flex flex-col items-center text-purple-400">
-                <FaServer size={40} />
+                <FaServer size={50} />
                 <span className="text-xs text-gray-400 mt-1">Services</span>
               </motion.div>
             </div>
