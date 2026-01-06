@@ -80,7 +80,7 @@ const Contact: React.FC<ContactProps> = ({ isOpen, onClose }) => {
             </a>
 
             <a
-              href="https://linkedin.com/in/hesbonangwenyi"
+              href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-4 bg-slate-700/50 rounded-xl hover:bg-slate-700 transition-colors group"
