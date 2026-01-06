@@ -76,14 +76,19 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
             <h3 className="text-white font-semibold mb-4">Services</h3>
             <ul className="space-y-3">
               {[
-                'CI/CD Pipeline Setup',
-                'Cloud Infrastructure (AWS, Azure, GCP)',
-                'Docker & Kubernetes',
-                'Monitoring & Logging',
-                'Automation & Scripting',
-              ].map((service, index) => (
-                <li key={index} className="text-gray-400 hover:text-white transition-colors duration-200">
-                  {service}
+                { label: 'CI/CD Pipeline Setup', id: 'ci-cd' },
+                { label: 'Cloud Infrastructure (AWS, Azure, GCP)', id: 'cloud' },
+                { label: 'Docker & Kubernetes', id: 'docker' },
+                { label: 'Monitoring & Logging', id: 'monitoring' },
+                { label: 'Automation & Scripting', id: 'automation' },
+              ].map((service) => (
+                <li key={service.id}>
+                  <button
+                    onClick={() => scrollToSection(service.id)}
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {service.label}
+                  </button>
                 </li>
               ))}
             </ul>
