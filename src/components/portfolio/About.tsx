@@ -48,7 +48,7 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="relative z-10">
               <img
-                src="https://d64gsuwffb70l.cloudfront.net/695cc9c2458cbb190ad7e869_1767688718605_fcf68e1b.jpg"
+                src="https://pasteboard.co/KZLTnxjYbkJJ.jpg"
                 alt="Hesbon Angwenyi"
                 className="rounded-2xl shadow-2xl shadow-purple-500/20 w-full max-w-md mx-auto"
               />
