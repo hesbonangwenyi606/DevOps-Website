@@ -42,7 +42,7 @@ const About: React.FC = () => {
 
   return (
     <section id="about" className="py-20 lg:py-32 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-14 lg:px-18">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
           <div className="relative">
