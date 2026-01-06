@@ -34,7 +34,6 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
               DevOps Engineer passionate about building scalable, automated infrastructure 
               and empowering teams to ship faster. Let's build something amazing together.
             </p>
-            {/* Removed social icons here */}
           </div>
 
           {/* Quick Links */}
@@ -128,14 +127,14 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
 
       {/* Bottom Bar */}
       <div className="border-t border-slate-800 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-center relative">
           {/* Copyright */}
           <p className="text-gray-400 text-sm text-center">
             © {currentYear} Hesbon Angwenyi. All rights reserved.
           </p>
 
-          {/* Centered Social Icons with hover pop */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 -top-4 flex items-center gap-4 bg-slate-950 px-3 py-1 rounded-full shadow-lg">
+          {/* Floating Social Icons Above Footer */}
+          <div className="absolute left-1/2 -top-6 transform -translate-x-1/2 flex items-center gap-4 bg-slate-950 px-4 py-2 rounded-full shadow-lg">
             {[
               { href: "https://github.com/hesbonangwenyi606", icon: "github" },
               { href: "https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/", icon: "linkedin" },
@@ -147,7 +146,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:scale-125"
+                className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125"
               >
                 {item.icon === "github" && (
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
