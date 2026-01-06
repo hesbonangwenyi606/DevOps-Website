@@ -124,7 +124,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
           </p>
 
           {/* Floating Social Icons Above Footer */}
-          <div className="absolute left-1/2 -top-6 transform -translate-x-1/2 flex items-center gap-4 bg-slate-950 px-4 py-2 rounded-full shadow-lg">
+          <div className="absolute left-1/2 -top-6 transform -translate-x-1/2 flex items-center gap-4 bg-slate-950 px-20 py-2 rounded-full shadow-lg">
             <a href="https://github.com/hesbonangwenyi606" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
               <FaGithub className="w-5 h-5" />
             </a>
