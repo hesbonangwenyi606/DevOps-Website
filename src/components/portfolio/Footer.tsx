@@ -82,12 +82,12 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <a
-                  href="https://www.google.com/maps/place/Westlands,+Nairobi,+Kenya"
+                  href="https://www.google.com/maps/place/Nairobi,+Kenya"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 hover:text-white transition-colors"
                 >
-                  Westlands, Nairobi, Kenya
+                  Nairobi, Kenya
                 </a>
               </li>
 
