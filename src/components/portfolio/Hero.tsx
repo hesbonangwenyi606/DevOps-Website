@@ -37,14 +37,18 @@ const useCountUp = (target: number, duration = 2000) => {
 };
 
 const terminalLines = [
-  '$ who am i',
+  '$ whoami',
   'hesbon_angwenyi',
-  '$ cat profession.txt',
-  'DevOps Engineer | Cloud Architect',
-  '$ echo $SCHOOL',
-  ' Flatiron School  2025',
+  '$ cat profile.txt',
+  'DevOps Engineer | Cloud Architect | CI/CD & Cloud Automation Enthusiast',
+  '$ echo $ALMA_MATER',
+  'Flatiron School, 2025',
   '$ ./start_journey.sh',
-  'Ready to build scalable infrastructure...',
+  'Building scalable infrastructure, automating pipelines, and empowering teams to ship faster...',
+  '$ ./deploy_projects.sh',
+  'Projects: Infrastructure as Code, Kubernetes Clusters, CI/CD Pipelines, Cloud Automation',
+  '$ ./skills_summary.sh',
+  'Skills: AWS | Azure | GCP | Docker | Kubernetes | Terraform | Python | Bash',
 ];
 
 const floatingIcons = [
