@@ -111,7 +111,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
             </h2>
 
             <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-              Fresh graduate from Moringa School (Flatiron) 2025, passionate about
+              Fresh graduate from Flatiron School 2025, passionate about
               building scalable, automated infrastructure and CI/CD pipelines that
               empower development teams to ship faster.
             </p>
