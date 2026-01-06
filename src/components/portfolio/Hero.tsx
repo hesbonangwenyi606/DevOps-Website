@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaDocker,
   FaAws,
@@ -17,6 +17,7 @@ interface HeroProps {
   onContactClick: () => void;
 }
 
+// CountUp hook
 const useCountUp = (target: number, duration = 2000) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -36,6 +37,43 @@ const useCountUp = (target: number, duration = 2000) => {
   return count;
 };
 
+// Animated Role Component
+const AnimatedRole: React.FC = () => {
+  const roles = [
+    'DevOps Engineer',
+    'Cloud Architect',
+    'CI/CD Specialist',
+    'Cloud Automation Expert',
+    'Infrastructure Engineer',
+  ];
+  const [currentRole, setCurrentRole] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % roles.length);
+    }, 2500); // Change role every 2.5 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative h-10 overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.h2
+          key={roles[currentRole]}
+          className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-300"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        >
+          {roles[currentRole]}
+        </motion.h2>
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// Terminal lines content
 const terminalLines = [
   '$ who am i',
   'hesbon_angwenyi',
@@ -122,8 +160,6 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/95 to-purple-900/50" />
-
-        {/* Animated Grid */}
         <div className="absolute inset-0 opacity-10">
           <div
             className="h-full w-full"
@@ -134,12 +170,9 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
             }}
           />
         </div>
-
-        {/* Floating Particles */}
         <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
 
-        {/* Floating DevOps Icons */}
         {floatingIcons.map(({ Icon, ...pos }, i) => (
           <motion.div
             key={i}
@@ -170,10 +203,11 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
               </span>
             </h1>
 
-            <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-300">DevOps Engineer & Cloud Architect</h2>
+            {/* Animated Roles */}
+            <AnimatedRole />
 
             <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0">
-            DevOps Engineer & Cloud Architect transforming cloud infrastructure and CI/CD pipelines into scalable, automated, and resilient systems. Passionate about accelerating deployments, reducing downtime, and enabling teams to deliver high-impact solutions efficiently.
+              Transforming cloud infrastructure and CI/CD pipelines into scalable, automated, resilient systems. Passionate about accelerating deployments, reducing downtime, and enabling teams to deliver high-impact solutions efficiently.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -191,7 +225,6 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
               </button>
             </div>
 
-            {/* Social Icons */}
             <div className="flex gap-4 mt-8 justify-center lg:justify-start flex-wrap">
               <FaGithub size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://github.com/hesbonangwenyi606', '_blank')} />
               <FaLinkedin size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/', '_blank')} />
