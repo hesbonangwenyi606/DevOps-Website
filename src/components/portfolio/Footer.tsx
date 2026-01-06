@@ -116,6 +116,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
             <h3 className="text-white font-semibold mb-4">Contact</h3>
             <ul className="space-y-3">
               <li>
+                +254 743 573 380
                 <a
                   href="mailto:hesbonmanyinsa96@gmail.com"
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2"
