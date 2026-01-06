@@ -77,7 +77,7 @@ const Contact: React.FC<ContactProps> = ({ isOpen, onClose }) => {
               <div className="min-w-0">
                 <div className="text-white text-sm font-medium">Email</div>
                 <div className="text-gray-400 text-xs break-all">
-                  hesbonmanyinsa96@gmail.com
+                  Message me here
                 </div>
               </div>
             </a>
