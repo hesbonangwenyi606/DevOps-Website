@@ -40,15 +40,15 @@ const terminalLines = [
   '$ whoami',
   'hesbon_angwenyi',
   '$ cat profile.txt',
-  'DevOps Engineer | Cloud Architect | CI/CD & Cloud Automation Enthusiast',
-  '$ echo $ALMA_MATER',
-  'Flatiron School, 2025',
+  'DevOps Engineer | Cloud Architect | CI/CD & Cloud Automation Specialist',
   '$ ./start_journey.sh',
   'Building scalable infrastructure, automating pipelines, and empowering teams to ship faster...',
   '$ ./deploy_projects.sh',
-  'Projects: Infrastructure as Code, Kubernetes Clusters, CI/CD Pipelines, Cloud Automation',
+  'Projects: Infrastructure as Code, Kubernetes Clusters, CI/CD Pipelines, Cloud Automation, Monitoring & Logging',
   '$ ./skills_summary.sh',
-  'Skills: AWS | Azure | GCP | Docker | Kubernetes | Terraform | Python | Bash',
+  'Skills: AWS | Azure | GCP | Docker | Kubernetes | Terraform | Python | Bash | CI/CD | GitOps',
+  '$ ./career_focus.sh',
+  'Passionate about optimizing cloud systems, reducing deployment times, and enabling high-performing teams',
 ];
 
 const floatingIcons = [
