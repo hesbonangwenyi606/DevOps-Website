@@ -17,9 +17,6 @@ interface HeroProps {
   onContactClick: () => void;
 }
 
-/* =========================
-   COUNT UP HOOK
-========================= */
 const useCountUp = (target: number, duration = 2000) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -39,9 +36,6 @@ const useCountUp = (target: number, duration = 2000) => {
   return count;
 };
 
-/* =========================
-   TERMINAL LINES
-========================= */
 const terminalLines = [
   '$ who am i',
   'hesbon_angwenyi',
@@ -53,9 +47,6 @@ const terminalLines = [
   'Ready to build scalable infrastructure...',
 ];
 
-/* =========================
-   FLOATING ICONS
-========================= */
 const floatingIcons = [
   { Icon: FaDocker, top: '20%', left: '45%' },
   { Icon: SiKubernetes, top: '30%', left: '55%' },
@@ -66,9 +57,6 @@ const floatingIcons = [
 ];
 
 const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
-  /* =========================
-     TERMINAL TYPING (CONTINUOUS)
-  ========================== */
   const [displayText, setDisplayText] = useState('');
   const currentLine = useRef(0);
   const charIndex = useRef(0);
@@ -78,7 +66,6 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
     typingInterval.current = setInterval(() => {
       const line = terminalLines[currentLine.current];
       if (charIndex.current <= line.length) {
-        // Update current line
         setDisplayText((prev) => {
           const lines = prev.split('\n');
           lines[currentLine.current] = line.slice(0, charIndex.current);
@@ -86,11 +73,9 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         });
         charIndex.current++;
       } else {
-        // Move to next line
         charIndex.current = 0;
         currentLine.current++;
         if (currentLine.current >= terminalLines.length) {
-          // Loop back
           currentLine.current = 0;
           setDisplayText('');
         } else {
@@ -107,16 +92,16 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
     };
   }, []);
 
-  /* =========================
-     COUNT-UP STATS
-  ========================== */
+  const [showCursor, setShowCursor] = useState(true);
+  useEffect(() => {
+    const cursorInterval = setInterval(() => setShowCursor((prev) => !prev), 500);
+    return () => clearInterval(cursorInterval);
+  }, []);
+
   const projects = useCountUp(15);
   const technologies = useCountUp(20);
   const certs = useCountUp(5);
 
-  /* =========================
-     SCROLL TO PROJECTS
-  ========================== */
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -147,25 +132,25 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         </div>
 
         {/* Floating Particles */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
 
         {/* Floating DevOps Icons */}
         {floatingIcons.map(({ Icon, ...pos }, i) => (
           <motion.div
             key={i}
-            className="absolute text-cyan-400/30"
+            className="absolute text-cyan-400/50"
             style={pos as React.CSSProperties}
             animate={{ y: [0, -15, 0], rotate: [0, 10, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
           >
-            <Icon size={60} />
+            <Icon size={50} />
           </motion.div>
         ))}
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left */}
           <div className="text-center lg:text-left space-y-6">
@@ -204,7 +189,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
             </div>
 
             {/* Social Icons */}
-            <div className="flex gap-4 mt-8 justify-center lg:justify-start">
+            <div className="flex gap-4 mt-8 justify-center lg:justify-start flex-wrap">
               <FaGithub size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://github.com/hesbonangwenyi606', '_blank')} />
               <FaLinkedin size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/', '_blank')} />
               <FaTwitter size={36} className="text-gray-400 hover:text-white cursor-pointer" onClick={() => window.open('https://twitter.com/hesbonangwenyi', '_blank')} />
@@ -213,7 +198,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           </div>
 
           {/* Right */}
-          <div className="hidden lg:block space-y-6">
+          <div className="space-y-6">
             {/* Terminal */}
             <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden shadow-2xl shadow-purple-500/10">
               <div className="flex items-center gap-2 px-4 py-3 bg-slate-900/50 border-b border-slate-700">
@@ -225,7 +210,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
               <div className="p-6 font-mono text-sm">
                 <pre className="text-green-400 whitespace-pre-wrap">
                   {displayText}
-                  <span className="inline-block w-2 h-5 bg-green-400 animate-pulse ml-1"></span>
+                  <span className={`inline-block w-2 h-5 bg-green-400 ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}></span>
                 </pre>
               </div>
             </div>
