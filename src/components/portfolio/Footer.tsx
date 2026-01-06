@@ -48,7 +48,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com/in/hesbonangwenyi"
+                href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-gray-400 hover:text-white hover:bg-slate-700 hover:border-purple-500/50 transition-all duration-300"
