@@ -45,19 +45,24 @@ const About: React.FC = () => {
     <section id="about" className="py-20 lg:py-32 bg-slate-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-10 sm:px-14 lg:px-9">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
           {/* Image Side */}
           <div className="relative">
-            <div className="relative z-10">
+            <motion.div
+              className="relative z-10"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
               <img
                 src="https://devops.tiiny.site/devOps.jpg"
                 alt="Hesbon Angwenyi"
-                className="rounded-2xl shadow-2xl shadow-purple-500/20 w-full max-w-md mx-auto"
+                className="rounded-2xl shadow-2xl shadow-purple-500/20 w-full max-w-lg mx-auto"
               />
-            </div>
+            </motion.div>
             
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -left-4 w-72 h-72 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl -z-0"></div>
-            <div className="absolute -bottom-4 -right-4 w-72 h-72 border-2 border-purple-500/30 rounded-2xl -z-0"></div>
+            <div className="absolute -top-4 -left-4 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl -z-0"></div>
+            <div className="absolute -bottom-4 -right-4 w-80 h-80 border-2 border-purple-500/30 rounded-2xl -z-0"></div>
           </div>
 
           {/* Content Side */}
@@ -78,10 +83,10 @@ const About: React.FC = () => {
                 I'm Hesbon Angwenyi, a DevOps Engineer and Cloud Architect passionate about designing and managing scalable, resilient infrastructure. I specialize in automating workflows, implementing CI/CD pipelines, and optimizing cloud systems to help teams deliver software faster and more reliably.
               </p>
               <p>
-                My experience spans containerization, Kubernetes orchestration, Terraform infrastructure as code, cloud platforms like AWS, Azure, and GCP, and monitoring & observability solutions. I thrive on solving complex challenges and improving operational efficiency.
+                My experience includes containerization, Kubernetes orchestration, Terraform infrastructure as code, cloud platforms like AWS, Azure, and GCP, and monitoring & observability solutions. I thrive on solving complex challenges and improving operational efficiency.
               </p>
               <p>
-                Beyond coding and automation, I enjoy mentoring peers, contributing to open-source projects, and staying ahead of emerging technologies in cloud computing and DevOps. My focus is always on enabling teams to ship high-impact solutions with confidence and speed.
+                Beyond coding and automation, I enjoy mentoring peers, contributing to open-source projects, and staying ahead of emerging cloud and DevOps technologies.
               </p>
             </div>
 
@@ -106,6 +111,7 @@ const About: React.FC = () => {
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>
