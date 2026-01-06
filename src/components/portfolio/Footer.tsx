@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaPhone } from 'react-icons/fa';
+import { SiX } from 'react-icons/si'; // X icon
 
 interface FooterProps {
   onContactClick: () => void;
@@ -130,8 +131,8 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
             <a href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
               <FaLinkedin className="w-5 h-5" />
             </a>
-            <a href="https://wa.me/254743573380" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
-              <FaWhatsapp className="w-5 h-5 text-green-500" />
+            <a href="https://x.com/hesbonmanyi254" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
+              <SiX className="w-5 h-5" />
             </a>
             <a href="https://wa.me/254743573380" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:-translate-y-1 hover:scale-125">
               <FaWhatsapp className="w-5 h-5 text-green-500" />
