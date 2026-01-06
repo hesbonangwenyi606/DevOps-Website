@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
   const highlights = [
@@ -41,7 +42,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 lg:py-32 bg-slate-900">
+    <section id="about" className="py-20 lg:py-32 bg-slate-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-10 sm:px-14 lg:px-18">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Side */}
@@ -80,27 +81,24 @@ const About: React.FC = () => {
 
             <div className="space-y-4 text-gray-400 text-lg mb-8">
               <p>
-                I'm Hesbon Angwenyi, a DevOps Engineer and recent graduate from Moringa School 
-                (Flatiron School) Class of 2025. My journey into tech started with a fascination 
-                for how systems work together to deliver seamless experiences.
+                I'm Hesbon Angwenyi, a DevOps Engineer and Cloud Architect passionate about designing and managing scalable, resilient infrastructure. I specialize in automating workflows, implementing CI/CD pipelines, and optimizing cloud systems to help teams deliver software faster and more reliably.
               </p>
               <p>
-                During my time at Moringa School, I developed expertise in cloud infrastructure, 
-                containerization, CI/CD pipelines, and infrastructure as code. I believe in the 
-                power of automation to transform how teams build and deploy software.
+                My experience spans containerization, Kubernetes orchestration, Terraform infrastructure as code, cloud platforms like AWS, Azure, and GCP, and monitoring & observability solutions. I thrive on solving complex challenges and improving operational efficiency.
               </p>
               <p>
-                When I'm not configuring Kubernetes clusters or writing Terraform modules, you'll 
-                find me exploring new cloud services, contributing to open-source projects, or 
-                mentoring aspiring developers.
+                Beyond coding and automation, I enjoy mentoring peers, contributing to open-source projects, and staying ahead of emerging technologies in cloud computing and DevOps. My focus is always on enabling teams to ship high-impact solutions with confidence and speed.
               </p>
             </div>
 
-            {/* Highlights Grid */}
+            {/* Highlights Grid with subtle animation */}
             <div className="grid sm:grid-cols-2 gap-4">
               {highlights.map((item, index) => (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
                   className="flex items-start gap-4 p-4 rounded-xl bg-slate-800/50 border border-slate-700 hover:border-purple-500/50 transition-all duration-300"
                 >
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-purple-400 flex-shrink-0">
@@ -110,7 +108,7 @@ const About: React.FC = () => {
                     <h3 className="text-white font-semibold mb-1">{item.title}</h3>
                     <p className="text-gray-400 text-sm">{item.description}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
