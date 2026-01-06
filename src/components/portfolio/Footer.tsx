@@ -77,7 +77,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
             <ul className="space-y-3">
               {[
                 'CI/CD Pipeline Setup',
-                'Cloud Infrastructure (AWS, Azure, GCP)',
+                'Cloud Infrastructure',
                 'Docker & Kubernetes',
                 'Monitoring & Logging',
                 'Automation & Scripting',
