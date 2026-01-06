@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
   FaDocker,
@@ -47,50 +47,51 @@ const floatingIcons = [
   { Icon: FaLinux, top: '55%', left: '45%' },
 ];
 
+const terminalLines = [
+  '$ who am i',
+  'hesbon_angwenyi',
+  '$ cat profession.txt',
+  'DevOps Engineer | Cloud Architect',
+  '$ echo $SCHOOL',
+  ' Flatiron School  2025',
+  '$ ./start_journey.sh',
+  'Ready to build scalable infrastructure...',
+];
+
 const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   const [displayText, setDisplayText] = useState('');
-  const [currentLine, setCurrentLine] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
+  const currentLine = useRef(0);
+  const charIndex = useRef(0);
+  const typingInterval = useRef<NodeJS.Timeout | null>(null);
 
-  const terminalLines = [
-    '$ who am i',
-    'hesbon_angwenyi',
-    '$ cat profession.txt',
-    'DevOps Engineer | Cloud Architect',
-    '$ echo $SCHOOL',
-    ' Flatiron School  2025',
-    '$ ./start_journey.sh',
-    'Ready to build scalable infrastructure...',
-  ];
-
-  useEffect(() => {
-    if (currentLine >= terminalLines.length) {
-      setIsTyping(false);
-      return;
-    }
-
-    const line = terminalLines[currentLine];
-    let charIndex = 0;
-
-    const typeInterval = setInterval(() => {
-      if (charIndex <= line.length) {
+  const startTyping = () => {
+    typingInterval.current = setInterval(() => {
+      if (currentLine.current >= terminalLines.length) {
+        clearInterval(typingInterval.current!);
+        return;
+      }
+      const line = terminalLines[currentLine.current];
+      if (charIndex.current <= line.length) {
         setDisplayText((prev) => {
           const lines = prev.split('\n');
-          lines[currentLine] = line.slice(0, charIndex);
+          lines[currentLine.current] = line.slice(0, charIndex.current);
           return lines.join('\n');
         });
-        charIndex++;
+        charIndex.current++;
       } else {
-        clearInterval(typeInterval);
-        setTimeout(() => {
-          setDisplayText((prev) => prev + '\n');
-          setCurrentLine((prev) => prev + 1);
-        }, 500);
+        charIndex.current = 0;
+        currentLine.current++;
+        setDisplayText((prev) => prev + '\n');
       }
     }, 50);
+  };
 
-    return () => clearInterval(typeInterval);
-  }, [currentLine]);
+  useEffect(() => {
+    startTyping();
+    return () => {
+      if (typingInterval.current) clearInterval(typingInterval.current);
+    };
+  }, []);
 
   /* Count-Up Stats */
   const projects = useCountUp(15);
@@ -144,15 +145,14 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         ))}
       </div>
 
+      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+          {/* Left */}
           <div className="text-center lg:text-left space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></span>
-              <span className="text-purple-300 text-sm font-medium">
-                Available for opportunities
-              </span>
+              <span className="text-purple-300 text-sm font-medium">Available for opportunities</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
@@ -162,14 +162,11 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
               </span>
             </h1>
 
-            <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-300">
-              DevOps Engineer & Cloud Architect
-            </h2>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-300">DevOps Engineer & Cloud Architect</h2>
 
             <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0">
-              Fresh graduate from Flatiron School 2025, passionate about
-              building scalable, automated infrastructure and CI/CD pipelines
-              that empower development teams to ship faster.
+              Fresh graduate from Flatiron School 2025, passionate about building scalable, automated
+              infrastructure and CI/CD pipelines that empower development teams to ship faster.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -189,81 +186,46 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
 
             {/* Social Icons */}
             <div className="flex gap-4 mt-8 justify-center lg:justify-start">
-              <a
-                href="https://github.com/hesbonangwenyi606"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaGithub size={36} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaLinkedin size={36} />
-              </a>
-              <a
-                href="https://twitter.com/hesbonangwenyi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaTwitter size={36} />
-              </a>
-              <button
-                onClick={onContactClick}
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <FaEnvelope size={36} />
-              </button>
+              <FaGithub size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={() => window.open('https://github.com/hesbonangwenyi606', '_blank')} />
+              <FaLinkedin size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={() => window.open('https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/', '_blank')} />
+              <FaTwitter size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={() => window.open('https://twitter.com/hesbonangwenyi', '_blank')} />
+              <FaEnvelope size={36} className="text-gray-400 hover:text-white transition-colors cursor-pointer" onClick={onContactClick} />
             </div>
           </div>
 
-          {/* Right Content - Terminal + Stats + AWS/K8s */}
+          {/* Right */}
           <div className="hidden lg:block space-y-6">
             {/* Terminal */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden shadow-2xl shadow-purple-500/10">
-                <div className="flex items-center gap-2 px-4 py-3 bg-slate-900/50 border-b border-slate-700">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="ml-4 text-gray-400 text-sm font-mono">
-                    hesbon@devops:~
-                  </span>
-                </div>
-                <div className="p-6 font-mono text-sm">
-                  <pre className="text-green-400 whitespace-pre-wrap">
-                    {displayText}
-                    {isTyping && (
-                      <span className="inline-block w-2 h-5 bg-green-400 animate-pulse ml-1"></span>
-                    )}
-                  </pre>
-                </div>
+            <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden shadow-2xl shadow-purple-500/10">
+              <div className="flex items-center gap-2 px-4 py-3 bg-slate-900/50 border-b border-slate-700">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <span className="ml-4 text-gray-400 text-sm font-mono">hesbon@devops:~</span>
               </div>
-            </motion.div>
+              <div className="p-6 font-mono text-sm">
+                <pre className="text-green-400 whitespace-pre-wrap">
+                  {displayText}
+                  <span className="inline-block w-2 h-5 bg-green-400 animate-pulse ml-1"></span>
+                </pre>
+              </div>
+            </div>
 
             {/* Stats */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 mt-6">
               {[
                 { value: projects, label: 'Projects' },
                 { value: technologies, label: 'Technologies' },
                 { value: certs, label: 'Certifications' },
               ].map((stat, i) => (
-                <div
-                  key={i}
-                  className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center hover:scale-105 transition-transform"
-                >
+                <div key={i} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center hover:scale-105 transition-transform">
                   <div className="text-2xl font-bold text-white">{stat.value}+</div>
                   <div className="text-gray-400 text-sm">{stat.label}</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
 
-            {/* AWS / K8s / Services Icons */}
+            {/* AWS/K8s/Services */}
             <div className="flex justify-between items-center mt-6">
               <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="flex flex-col items-center text-cyan-400">
                 <FaCloud size={50} />
