@@ -117,7 +117,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
 
       {/* Bottom Bar */}
       <div className="border-t border-slate-800 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative">
           
           {/* Floating Social Icons Above Footer */}
           <div className="absolute left-1/2 -top-10 transform -translate-x-1/2 flex items-center gap-4 bg-slate-950 px-20 py-3 rounded-full shadow-lg">
@@ -135,8 +135,8 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
             </a>
           </div>
 
-          {/* Copyright */}
-          <p className="text-gray-400 text-sm text-center mt-16">
+          {/* Copyright in bottom-right */}
+          <p className="text-gray-400 text-sm absolute bottom-2 right-4">
             © {currentYear} Hesbon Angwenyi. All rights reserved.
           </p>
         </div>
