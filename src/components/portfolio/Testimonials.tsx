@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface Testimonial {
   id: number;
@@ -34,7 +34,7 @@ const Testimonials: React.FC = () => {
       name: 'Grace Wanjiku',
       role: 'Cloud Architect',
       company: 'CloudFirst Kenya',
-      content: 'Hesbon\'s understanding of cloud infrastructure and IaC is beyond his experience level. During our collaboration, he designed and implemented a multi-region AWS architecture using Terraform that exceeded our expectations. Highly recommend!',
+      content: "Hesbon's understanding of cloud infrastructure and IaC is beyond his experience level. During our collaboration, he designed and implemented a multi-region AWS architecture using Terraform that exceeded our expectations. Highly recommend!",
       avatar: 'GW',
     },
     {
@@ -46,6 +46,14 @@ const Testimonials: React.FC = () => {
       avatar: 'MO',
     },
   ];
+
+  // Automatic carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 8000); // change testimonial every 8 seconds
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   const nextTestimonial = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -77,7 +85,7 @@ const Testimonials: React.FC = () => {
         {/* Testimonials Carousel */}
         <div className="relative max-w-4xl mx-auto">
           {/* Main Testimonial Card */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-slate-700 relative overflow-hidden">
+          <div className="bg-slate-800/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-slate-700 relative overflow-hidden transition-all duration-700 ease-in-out">
             {/* Quote Icon */}
             <div className="absolute top-8 right-8 text-purple-500/20">
               <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
