@@ -21,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
     <footer className="bg-slate-950 border-t border-slate-800 relative">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pb-24">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
@@ -68,6 +68,24 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onBlogClick }) => {
                   </button>
                 </li>
               )}
+            </ul>
+          </div>
+
+          {/* Services Column */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Services</h3>
+            <ul className="space-y-3">
+              {[
+                'CI/CD Pipeline Setup',
+                'Cloud Infrastructure (AWS, Azure, GCP)',
+                'Docker & Kubernetes',
+                'Monitoring & Logging',
+                'Automation & Scripting',
+              ].map((service, index) => (
+                <li key={index} className="text-gray-400 hover:text-white transition-colors duration-200">
+                  {service}
+                </li>
+              ))}
             </ul>
           </div>
 
