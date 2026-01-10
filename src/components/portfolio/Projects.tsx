@@ -26,7 +26,7 @@ const Projects: React.FC = () => {
       technologies: ['Kubernetes', 'ArgoCD', 'Istio', 'Helm', 'Prometheus'],
       category: 'containers',
       github: 'https://github.com/hesbonangwenyi/k8s-platform',
-      demo: '#',
+      demo: 'https://k8s-demo.example.com',
       highlights: ['99.99% uptime SLA', '50% faster deployments', 'Auto-scaling clusters'],
     },
     {
@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
       technologies: ['GitHub Actions', 'Jenkins', 'Docker', 'AWS'],
       category: 'cicd',
       github: 'https://github.com/hesbonangwenyi/cicd-automation',
-      demo: '#',
+      demo: 'https://cicd-demo.example.com',
       highlights: ['10x faster releases', 'Zero-downtime deployments', 'Automated security compliance'],
     },
     {
@@ -50,7 +50,7 @@ const Projects: React.FC = () => {
       technologies: ['Prometheus', 'Grafana', 'Loki', 'Jaeger'],
       category: 'monitoring',
       github: 'https://github.com/hesbonangwenyi/observability-stack',
-      demo: '#',
+      demo: 'https://monitoring-demo.example.com',
       highlights: ['Real-time alerting', '50+ dashboards', 'End-to-end tracing'],
     },
     {
@@ -62,7 +62,7 @@ const Projects: React.FC = () => {
       technologies: ['AWS Lambda', 'SQS', 'EventBridge', 'DynamoDB', 'Python'],
       category: 'cloud',
       github: 'https://github.com/hesbonangwenyi/serverless-events',
-      demo: '#',
+      demo: 'https://serverless-demo.example.com',
       highlights: ['1M+ events/day', 'Sub-second latency', '90% cost reduction'],
     },
   ];
@@ -75,16 +75,21 @@ const Projects: React.FC = () => {
     { id: 'cloud', label: 'Cloud' },
   ];
 
-  const filteredProjects =
-    filter === 'all' ? projects : projects.filter((p) => p.category === filter);
+  const filteredProjects = filter === 'all'
+    ? projects
+    : projects.filter((p) => p.category === filter);
 
   return (
     <section id="projects" className="py-20 lg:py-32 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-3">Featured Projects</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">Key DevOps, cloud, and automation projects</p>
+          <h2 className="text-4xl font-bold text-white mb-3">
+            Featured Projects
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Key DevOps, cloud, and automation projects
+          </p>
         </div>
 
         {/* Filter Buttons */}
@@ -111,7 +116,6 @@ const Projects: React.FC = () => {
               key={project.id}
               className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10"
             >
-              {/* Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={project.image}
@@ -125,16 +129,16 @@ const Projects: React.FC = () => {
                   </span>
                 </div>
               </div>
-
-              {/* Content */}
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 text-sm mb-3 line-clamp-2">{project.description}</p>
+                <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                  {project.description}
+                </p>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-3">
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
@@ -145,7 +149,7 @@ const Projects: React.FC = () => {
                   ))}
                 </div>
 
-                {/* GitHub & Live Demo Buttons */}
+                {/* GitHub & Live Demo */}
                 <div className="flex gap-2">
                   <a
                     href={project.github}
