@@ -13,7 +13,7 @@ const Education: React.FC = () => {
   const timeline: TimelineItem[] = [
     // Multimedia University - Computer Science
     {
-      year: '2022 – 2024',
+      year: '2019 – 2023',
       title: 'Bachelor of Science in Computer Science',
       organization: 'Multimedia University of Kenya',
       description:
@@ -30,7 +30,7 @@ const Education: React.FC = () => {
     {
       year: '2024',
       title: 'Software Engineering Program',
-      organization: 'Moringa School (Flatiron Curriculum)',
+      organization: 'Moringa School',
       description:
         'Completed an intensive software engineering program focused on full-stack development, APIs, databases, and collaborative product development.',
       type: 'education',
@@ -38,6 +38,23 @@ const Education: React.FC = () => {
         'Full-stack web development',
         'REST APIs & databases',
         'Agile & team projects',
+      ],
+    },
+
+    // Flatiron School - DevOps Engineering
+    {
+      year: '2025',
+      title: 'DevOps Engineering Program',
+      organization: 'Flatiron School',
+      description:
+        'Completed a focused DevOps engineering program covering cloud infrastructure, CI/CD pipelines, container orchestration, infrastructure as code, and monitoring.',
+      type: 'education',
+      highlights: [
+        'Cloud infrastructure (AWS, Azure, GCP)',
+        'CI/CD & automation',
+        'Containers & Kubernetes',
+        'Infrastructure as Code (Terraform, Ansible)',
+        'Monitoring & observability',
       ],
     },
 
