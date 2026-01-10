@@ -11,18 +11,20 @@ interface TimelineItem {
 
 const Education: React.FC = () => {
   const timeline: TimelineItem[] = [
-    // Multimedia University - Computer Science
+    // Flatiron School - DevOps Engineering
     {
-      year: '2019 – 2023',
-      title: 'Bachelor of Science in Computer Science',
-      organization: 'Multimedia University of Kenya',
+      year: '2025',
+      title: 'DevOps Engineering Program',
+      organization: 'Flatiron School',
       description:
-        'Studied core computer science concepts including data structures, algorithms, software engineering, databases, operating systems, and computer networks.',
+        'Completed a focused DevOps engineering program covering cloud infrastructure, CI/CD pipelines, container orchestration, infrastructure as code, and monitoring.',
       type: 'education',
       highlights: [
-        'Data structures & algorithms',
-        'Software engineering principles',
-        'Databases & operating systems',
+        'Cloud infrastructure (AWS, Azure, GCP)',
+        'CI/CD & automation',
+        'Containers & Kubernetes',
+        'Infrastructure as Code (Terraform, Ansible)',
+        'Monitoring & observability',
       ],
     },
 
@@ -41,24 +43,22 @@ const Education: React.FC = () => {
       ],
     },
 
-    // Flatiron School - DevOps Engineering
+    // Multimedia University - Computer Science
     {
-      year: '2025',
-      title: 'DevOps Engineering Program',
-      organization: 'Flatiron School',
+      year: '2019 – 2023',
+      title: 'Bachelor of Science in Computer Science',
+      organization: 'Multimedia University of Kenya',
       description:
-        'Completed a focused DevOps engineering program covering cloud infrastructure, CI/CD pipelines, container orchestration, infrastructure as code, and monitoring.',
+        'Studied core computer science concepts including data structures, algorithms, software engineering, databases, operating systems, and computer networks.',
       type: 'education',
       highlights: [
-        'Cloud infrastructure (AWS, Azure, GCP)',
-        'CI/CD & automation',
-        'Containers & Kubernetes',
-        'Infrastructure as Code (Terraform, Ansible)',
-        'Monitoring & observability',
+        'Data structures & algorithms',
+        'Software engineering principles',
+        'Databases & operating systems',
       ],
     },
 
-    // Certifications
+    // Remaining Certifications
     {
       year: '2025',
       title: 'AWS Solutions Architect – Associate',
@@ -70,32 +70,6 @@ const Education: React.FC = () => {
         'Cloud architecture',
         'Security best practices',
         'Cost optimization',
-      ],
-    },
-    {
-      year: '2025',
-      title: 'Certified Kubernetes Administrator (CKA)',
-      organization: 'Cloud Native Computing Foundation',
-      description:
-        'Demonstrated skills in Kubernetes cluster administration, workload scheduling, networking, and troubleshooting.',
-      type: 'certification',
-      highlights: [
-        'Cluster administration',
-        'Kubernetes networking',
-        'Troubleshooting',
-      ],
-    },
-    {
-      year: '2024',
-      title: 'Terraform Associate',
-      organization: 'HashiCorp',
-      description:
-        'Certified in Infrastructure as Code concepts, Terraform workflows, modules, and state management.',
-      type: 'certification',
-      highlights: [
-        'Infrastructure as Code',
-        'Terraform modules',
-        'State management',
       ],
     },
     {
