@@ -58,7 +58,7 @@ const Skills: React.FC = () => {
     { name: 'Python', icon: '🐍', category: ['scripting'], proficiency: 85, color: 'from-blue-400 to-yellow-500' },
     { name: 'Bash', icon: '💻', category: ['scripting'], proficiency: 90, color: 'from-green-500 to-green-700' },
 
-    // Software / Full-Stack Essentials (minimal, just for context)
+    // Software / Full-Stack Essentials
     { name: 'Node.js', icon: '🟢', category: ['software'], proficiency: 75, color: 'from-green-400 to-green-600' },
     { name: 'REST APIs', icon: '🔗', category: ['software'], proficiency: 80, color: 'from-purple-400 to-purple-600' },
     { name: 'SQL / PostgreSQL', icon: '🗄️', category: ['software'], proficiency: 70, color: 'from-blue-400 to-blue-600' },
@@ -89,7 +89,7 @@ const Skills: React.FC = () => {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
                 activeCategory === category.id
                   ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                  : 'bg-slate-800 text-gray-400 hover:text-white'
+                  : 'bg-slate-800 text-gray-400 hover:text-white hover:bg-slate-700'
               }`}
             >
               {category.label}
@@ -98,13 +98,18 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {filteredSkills.map(skill => (
             <div
               key={skill.name}
-              className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 hover:border-purple-500/50 transition"
+              className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 
+                         hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/30
+                         hover:-translate-y-2 hover:scale-105 transition-all duration-300"
             >
-              <div className="text-3xl mb-2">{skill.icon}</div>
+              {/* Icon with glow/pulse effect */}
+              <div className="text-3xl mb-2 transition-transform duration-300 group-hover:scale-125 group-hover:animate-pulse">
+                {skill.icon}
+              </div>
               <h3 className="text-white text-sm font-semibold mb-2">{skill.name}</h3>
               <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
                 <div
