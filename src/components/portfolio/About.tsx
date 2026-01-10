@@ -59,12 +59,6 @@ const About: React.FC = () => {
             {/* Decorative Elements */}
             <div className="absolute -top-4 -left-4 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl -z-0"></div>
             <div className="absolute -bottom-4 -right-4 w-80 h-80 border-2 border-purple-500/30 rounded-2xl -z-0"></div>
-
-            {/* Graduate Badge */}
-            <div className="absolute -bottom-6 -right-6 lg:right-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 shadow-xl z-20">
-              <div className="text-3xl font-bold text-white">2025</div>
-              <div className="text-blue-100 text-sm">Graduate</div>
-            </div>
           </div>
 
           {/* Content Side */}
