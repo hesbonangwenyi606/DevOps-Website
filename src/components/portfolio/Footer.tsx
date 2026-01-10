@@ -1,125 +1,137 @@
 import React, { useState } from 'react';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaPhone } from 'react-icons/fa';
+import { SiX } from 'react-icons/si';
+import emailjs from '@emailjs/browser';
 
-type SkillCategory =
-  | 'all'
-  | 'cloud'
-  | 'containers'
-  | 'cicd'
-  | 'iac'
-  | 'monitoring'
-  | 'scripting'
-  | 'software';
+const Footer: React.FC = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('');
 
-interface Skill {
-  name: string;
-  icon: string;
-  category: SkillCategory[];
-  proficiency: number;
-  color: string;
-  isDevOps?: boolean;
-}
+  const currentYear = new Date().getFullYear();
 
-const Skills: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<SkillCategory>('all');
-
-  const categories: { id: SkillCategory; label: string }[] = [
-    { id: 'all', label: 'All Skills' },
-    { id: 'cloud', label: 'Cloud' },
-    { id: 'containers', label: 'Containers' },
-    { id: 'cicd', label: 'CI/CD' },
-    { id: 'iac', label: 'IaC' },
-    { id: 'monitoring', label: 'Monitoring' },
-    { id: 'scripting', label: 'Scripting' },
-    { id: 'software', label: 'Software' },
-  ];
-
-  const skills: Skill[] = [
-    // DevOps & Cloud
-    { name: 'AWS', icon: '☁️', category: ['cloud'], proficiency: 90, color: 'from-orange-400 to-orange-600', isDevOps: true },
-    { name: 'Docker', icon: '🐳', category: ['containers'], proficiency: 95, color: 'from-blue-400 to-cyan-500', isDevOps: true },
-    { name: 'Kubernetes', icon: '☸️', category: ['containers'], proficiency: 85, color: 'from-blue-500 to-indigo-600', isDevOps: true },
-    { name: 'GitHub Actions', icon: '⚡', category: ['cicd'], proficiency: 90, color: 'from-gray-600 to-gray-800', isDevOps: true },
-    { name: 'Jenkins', icon: '🔧', category: ['cicd'], proficiency: 85, color: 'from-red-500 to-red-700', isDevOps: true },
-    { name: 'Terraform', icon: '🏗️', category: ['iac'], proficiency: 90, color: 'from-purple-500 to-purple-700', isDevOps: true },
-    { name: 'Prometheus', icon: '📊', category: ['monitoring'], proficiency: 85, color: 'from-orange-500 to-red-500', isDevOps: true },
-    { name: 'Grafana', icon: '📈', category: ['monitoring'], proficiency: 90, color: 'from-orange-400 to-yellow-500', isDevOps: true },
-    { name: 'Python', icon: '🐍', category: ['scripting'], proficiency: 85, color: 'from-blue-400 to-yellow-500', isDevOps: true },
-    { name: 'Bash', icon: '💻', category: ['scripting'], proficiency: 90, color: 'from-green-500 to-green-700', isDevOps: true },
-
-    // Software / Full-Stack
-    { name: 'React.js', icon: '⚛️', category: ['software'], proficiency: 90, color: 'from-blue-400 to-indigo-600' },
-    { name: 'Node.js', icon: '🟢', category: ['software'], proficiency: 85, color: 'from-green-400 to-green-600' },
-    { name: 'JavaScript', icon: '🟨', category: ['software'], proficiency: 92, color: 'from-yellow-400 to-yellow-600' },
-    { name: 'HTML5', icon: '📄', category: ['software'], proficiency: 95, color: 'from-orange-400 to-red-500' },
-    { name: 'CSS3 / Tailwind', icon: '🎨', category: ['software'], proficiency: 90, color: 'from-blue-400 to-purple-500' },
-  ];
-
-  const filteredSkills =
-    activeCategory === 'all'
-      ? skills
-      : skills.filter(skill => skill.category.includes(activeCategory));
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    emailjs.send(
+      'YOUR_SERVICE_ID',      // Replace with your EmailJS Service ID
+      'YOUR_TEMPLATE_ID',     // Replace with your EmailJS Template ID
+      { name, email, message },
+      'YOUR_PUBLIC_KEY'       // Replace with your EmailJS Public Key
+    ).then(
+      () => {
+        setStatus('Message sent successfully!');
+        setName('');
+        setEmail('');
+        setMessage('');
+      },
+      () => setStatus('Failed to send message. Try again later.')
+    );
+  };
 
   return (
-    <section id="skills" className="py-20 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-3">
-            Skills & Technologies
-          </h2>
-          <p className="text-gray-400">
-            Core tools used to build and operate modern cloud platforms
+    <footer className="bg-slate-950 border-t border-slate-800 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 pb-24 grid md:grid-cols-2 lg:grid-cols-5 gap-12">
+        
+        {/* Brand Column */}
+        <div className="lg:col-span-2">
+          <div className="flex items-center space-x-2 mb-4">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">HA</span>
+            </div>
+            <span className="text-white font-semibold text-lg">
+              Hesbon<span className="text-purple-400">.dev</span>
+            </span>
+          </div>
+          <p className="text-gray-400 mb-6 max-w-md">
+            DevOps Engineer passionate about building scalable, automated infrastructure 
+            and empowering teams to ship faster.
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {categories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                activeCategory === category.id
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                  : 'bg-slate-800 text-gray-400 hover:text-white hover:bg-slate-700'
-              }`}
-            >
-              {category.label}
-            </button>
-          ))}
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+          <ul className="space-y-3 text-gray-400">
+            <li>Home</li>
+            <li>About</li>
+            <li>Skills</li>
+            <li>Projects</li>
+            <li>Education</li>
+          </ul>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filteredSkills.map(skill => (
-            <div
-              key={skill.name}
-              className={`bg-slate-800/50 rounded-xl p-4 border border-slate-700 transition-all duration-300
-                hover:-translate-y-2 hover:scale-105
-                ${
-                  skill.isDevOps
-                    ? 'shadow-[0_0_8px_#0ff] animate-pulse border-cyan-400'
-                    : 'hover:border-purple-500/50 hover:shadow-purple-500/30'
-                }
-              `}
+        {/* Services Column */}
+        <div>
+          <h3 className="text-white font-semibold mb-4">Services</h3>
+          <ul className="space-y-3 text-gray-400">
+            <li>CI/CD Pipeline Setup</li>
+            <li>Cloud Infrastructure</li>
+            <li>Docker & Kubernetes</li>
+            <li>Monitoring & Logging</li>
+            <li>Automation & Scripting</li>
+          </ul>
+        </div>
+
+        {/* Contact Form Column */}
+        <div>
+          <h3 className="text-white font-semibold mb-4">Contact</h3>
+          <form onSubmit={sendEmail} className="flex flex-col gap-3">
+            <input
+              type="text"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="p-2 rounded text-black"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="p-2 rounded text-black"
+              required
+            />
+            <textarea
+              placeholder="Your Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="p-2 rounded text-black"
+              required
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
             >
-              <div className="text-3xl mb-2">{skill.icon}</div>
-              <h3 className="text-white text-sm font-semibold mb-2">
-                {skill.name}
-              </h3>
-              <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                <div
-                  className={`h-full bg-gradient-to-r ${skill.color}`}
-                  style={{ width: `${skill.proficiency}%` }}
-                />
-              </div>
-              <p className="text-xs text-gray-400 mt-1">{skill.proficiency}%</p>
-            </div>
-          ))}
+              Send Message
+            </button>
+            {status && <p className="text-sm text-gray-300">{status}</p>}
+          </form>
         </div>
       </div>
-    </section>
+
+      {/* Social Icons */}
+      <div className="absolute left-1/2 -top-10 transform -translate-x-1/2 flex items-center gap-4 bg-slate-950 px-20 py-3 rounded-full shadow-lg">
+        <a href="https://github.com/hesbonangwenyi606" target="_blank" rel="noopener noreferrer">
+          <FaGithub className="w-8 h-8 text-gray-400 hover:text-white" />
+        </a>
+        <a href="https://www.linkedin.com/in/hesbon-angwenyi-58b9412b4/" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin className="w-8 h-8 text-gray-400 hover:text-white" />
+        </a>
+        <a href="https://x.com/hesbonmanyi254" target="_blank" rel="noopener noreferrer">
+          <SiX className="w-8 h-8 text-gray-400 hover:text-white" />
+        </a>
+        <a href="https://wa.me/254743573380" target="_blank" rel="noopener noreferrer">
+          <FaWhatsapp className="w-8 h-8 text-green-500 hover:text-white" />
+        </a>
+      </div>
+
+      <p className="text-gray-400 text-sm absolute bottom-2 right-4">
+        © {currentYear} Hesbon Angwenyi. All rights reserved.
+      </p>
+    </footer>
   );
 };
 
-export default Skills;
+export default Footer;
