@@ -11,6 +11,7 @@ const Services: React.FC = () => {
       title: 'Cloud Infrastructure',
       description: 'Design and implement scalable cloud architectures on AWS, Azure, and GCP with high availability and cost optimization.',
       features: ['Multi-cloud strategy', 'Cost optimization', 'High availability design'],
+      link: '#cloud-infra',
     },
     {
       icon: (
@@ -21,6 +22,7 @@ const Services: React.FC = () => {
       title: 'Container Orchestration',
       description: 'Deploy and manage containerized applications using Docker and Kubernetes with automated scaling and self-healing.',
       features: ['Kubernetes clusters', 'Docker optimization', 'Service mesh implementation'],
+      link: '#containers',
     },
     {
       icon: (
@@ -31,6 +33,7 @@ const Services: React.FC = () => {
       title: 'CI/CD Pipelines',
       description: 'Build automated deployment pipelines with testing, security scanning, and zero-downtime releases.',
       features: ['Automated testing', 'Security scanning', 'Blue-green deployments'],
+      link: '#cicd',
     },
     {
       icon: (
@@ -41,6 +44,7 @@ const Services: React.FC = () => {
       title: 'Infrastructure as Code',
       description: 'Manage infrastructure using Terraform and Ansible for reproducible, version-controlled environments.',
       features: ['Terraform modules', 'Ansible playbooks', 'GitOps workflows'],
+      link: '#iac',
     },
     {
       icon: (
@@ -51,6 +55,7 @@ const Services: React.FC = () => {
       title: 'Monitoring & Observability',
       description: 'Implement comprehensive monitoring with Prometheus, Grafana, and distributed tracing for full visibility.',
       features: ['Real-time metrics', 'Custom dashboards', 'Alerting systems'],
+      link: '#monitoring',
     },
     {
       icon: (
@@ -61,6 +66,7 @@ const Services: React.FC = () => {
       title: 'DevSecOps',
       description: 'Integrate security into the development lifecycle with automated scanning and compliance checks.',
       features: ['Vulnerability scanning', 'Compliance automation', 'Secret management'],
+      link: '#devsecops',
     },
   ];
 
@@ -106,7 +112,10 @@ const Services: React.FC = () => {
               {/* Features */}
               <ul className="space-y-2">
                 {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-2 text-gray-300 text-sm">
+                  <li
+                    key={idx}
+                    className="flex items-center gap-2 text-gray-300 text-sm transform transition-all duration-300 hover:translate-x-2 hover:text-green-400"
+                  >
                     <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -114,6 +123,14 @@ const Services: React.FC = () => {
                   </li>
                 ))}
               </ul>
+
+              {/* Learn More Button */}
+              <a
+                href={service.link}
+                className="mt-6 inline-block px-6 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
+              >
+                Learn More
+              </a>
             </div>
           ))}
         </div>
