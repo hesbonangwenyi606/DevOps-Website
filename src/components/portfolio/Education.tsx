@@ -7,7 +7,7 @@ interface TimelineItem {
   description: string;
   type: 'education' | 'certification';
   highlights: string[];
-  color: string; // added gradient color
+  color: string; // gradient for card and dot
 }
 
 const Education: React.FC = () => {
@@ -86,6 +86,15 @@ const Education: React.FC = () => {
     },
   ];
 
+  // Build a gradient string for the timeline line
+  const gradientStops = timeline
+    .map((item) => {
+      // Convert Tailwind colors to CSS variables
+      const colors = item.color.split('to-').map((c) => c.trim());
+      return colors.map((c) => `var(--tw-gradient-${c})`).join(', ');
+    })
+    .join(', ');
+
   return (
     <section id="education" className="py-20 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4">
@@ -101,8 +110,13 @@ const Education: React.FC = () => {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-slate-700" />
+          {/* Gradient Timeline Line */}
+          <div
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px"
+            style={{
+              background: `linear-gradient(to bottom, ${gradientStops})`,
+            }}
+          />
 
           <div className="space-y-12">
             {timeline.map((item, index) => (
@@ -112,8 +126,16 @@ const Education: React.FC = () => {
                   index % 2 === 0 ? 'md:flex-row-reverse' : ''
                 }`}
               >
-                {/* Dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-slate-950" />
+                {/* Dot with gradient */}
+                <div
+                  className={`absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full ring-4 ring-slate-950 z-10`}
+                  style={{
+                    background: `linear-gradient(135deg, ${item.color
+                      .split('to-')
+                      .map((c) => `var(--tw-gradient-${c.trim()})`)
+                      .join(', ')})`,
+                  }}
+                ></div>
 
                 {/* Card */}
                 <div
