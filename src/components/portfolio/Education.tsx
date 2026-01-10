@@ -43,7 +43,7 @@ const Education: React.FC = () => {
       highlights: ['Web development', 'APIs & Databases', 'Team projects'],
     },
     {
-      year: '2019 – 2023',
+      year: '2023',
       title: 'Computer Science',
       organization: 'Multimedia University of Kenya',
       description: 'Studied programming, software, and computer basics.',
@@ -61,7 +61,7 @@ const Education: React.FC = () => {
             Background Education
           </h2>
           <p className="text-gray-100 max-w-5xl mx-auto">
-             Skills & Achievements
+            Building expertise through education and certifications
           </p>
         </div>
 
