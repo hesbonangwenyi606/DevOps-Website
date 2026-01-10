@@ -69,7 +69,7 @@ const Skills: React.FC = () => {
       ? skills
       : skills.filter(skill => skill.category.includes(activeCategory));
 
-  // DevOps skill check
+  // Helper to check if a skill is DevOps-related
   const isDevOps = (skill: Skill) =>
     skill.category.some(cat => ['cloud', 'containers', 'cicd', 'iac', 'monitoring', 'scripting'].includes(cat));
 
@@ -106,16 +106,16 @@ const Skills: React.FC = () => {
           {filteredSkills.map(skill => (
             <div
               key={skill.name}
-              className={`bg-slate-800/50 rounded-xl p-4 border border-slate-700 transition-all duration-300
-                          hover:-translate-y-2 hover:scale-105 
-                          ${isDevOps(skill)
-                            ? 'border-blue-400 shadow-blue-400/50 shadow-xl animate-pulse'
-                            : 'hover:border-purple-500/50 hover:shadow-purple-500/30'}`}
+              className={`bg-slate-800/50 rounded-xl p-4 border border-slate-700 
+                          hover:-translate-y-2 hover:scale-105 transition-all duration-300 
+                          ${isDevOps(skill) ? 'hover:border-blue-400 hover:shadow-blue-400/50 hover:shadow-xl' : 'hover:border-purple-500/50 hover:shadow-purple-500/30'}`}
             >
-              {/* Icon with continuous glow for DevOps */}
+              {/* Icon with glow/pulse effect */}
               <div
                 className={`text-3xl mb-2 transition-transform duration-300 ${
-                  isDevOps(skill) ? 'text-blue-400 animate-pulse' : ''
+                  isDevOps(skill)
+                    ? 'group-hover:scale-125 group-hover:animate-pulse text-blue-400'
+                    : 'group-hover:scale-110'
                 }`}
               >
                 {skill.icon}
