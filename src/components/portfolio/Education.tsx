@@ -11,19 +11,22 @@ interface TimelineItem {
 
 const Education: React.FC = () => {
   const timeline: TimelineItem[] = [
+    // Multimedia University - Computer Science
     {
       year: '2022 – 2024',
-      title: 'Bachelor of Science in Information Technology',
+      title: 'Bachelor of Science in Computer Science',
       organization: 'Multimedia University of Kenya',
       description:
-        'Studied core computer science and IT concepts including software development, databases, networking, and systems analysis.',
+        'Studied core computer science concepts including data structures, algorithms, software engineering, databases, operating systems, and computer networks.',
       type: 'education',
       highlights: [
-        'Software development fundamentals',
-        'Databases & networking',
-        'Systems analysis',
+        'Data structures & algorithms',
+        'Software engineering principles',
+        'Databases & operating systems',
       ],
     },
+
+    // Moringa School - Software Engineering
     {
       year: '2024',
       title: 'Software Engineering Program',
@@ -37,6 +40,8 @@ const Education: React.FC = () => {
         'Agile & team projects',
       ],
     },
+
+    // Certifications
     {
       year: '2025',
       title: 'AWS Solutions Architect – Associate',
@@ -106,6 +111,7 @@ const Education: React.FC = () => {
 
         {/* Timeline */}
         <div className="relative">
+          {/* Timeline Line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-slate-700" />
 
           <div className="space-y-12">
@@ -126,6 +132,7 @@ const Education: React.FC = () => {
                   }`}
                 >
                   <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                    {/* Year & Type */}
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-sm font-semibold text-purple-400">
                         {item.year}
@@ -143,16 +150,20 @@ const Education: React.FC = () => {
                       </span>
                     </div>
 
+                    {/* Title & Organization */}
                     <h3 className="text-lg font-bold text-white mb-1">
                       {item.title}
                     </h3>
                     <p className="text-purple-400 text-sm mb-3">
                       {item.organization}
                     </p>
+
+                    {/* Description */}
                     <p className="text-gray-400 text-sm mb-4">
                       {item.description}
                     </p>
 
+                    {/* Highlights */}
                     <div className="flex flex-wrap gap-2">
                       {item.highlights.map((h, i) => (
                         <span
@@ -166,6 +177,7 @@ const Education: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Spacer for alternating layout */}
                 <div className="hidden md:block md:w-1/2" />
               </div>
             ))}
