@@ -145,7 +145,7 @@ const Projects: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Buttons */}
+                {/* GitHub & Live Demo Buttons */}
                 <div className="flex gap-2">
                   <a
                     href={project.github}
@@ -162,14 +162,6 @@ const Projects: React.FC = () => {
                     className="flex-1 px-3 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center rounded-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all text-sm flex items-center justify-center gap-2"
                   >
                     Live Demo
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 px-3 py-2 bg-purple-500/70 text-white text-center rounded-lg hover:bg-purple-600 transition-colors text-sm flex items-center justify-center gap-2"
-                  >
-                    View More
                   </a>
                 </div>
               </div>
