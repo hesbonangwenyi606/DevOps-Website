@@ -5,18 +5,18 @@ interface TimelineItem {
   title: string;
   organization: string;
   description: string;
-  type: 'Education Background';
+  type: 'Education Background' | 'Certification';
   highlights: string[];
 }
 
-const Education: React.FC = () => {
+const EducationBackground: React.FC = () => {
   const timeline: TimelineItem[] = [
     {
       year: '2019 – 2023',
       title: 'Computer Science',
       organization: 'Multimedia University of Kenya',
       description: 'Studied programming, software, and computer basics.',
-      type: 'education',
+      type: 'Education Background',
       highlights: ['Programming', 'Data & Algorithms', 'Software design'],
     },
     {
@@ -24,7 +24,7 @@ const Education: React.FC = () => {
       title: 'Software Engineering',
       organization: 'Moringa School',
       description: 'Learned to code full-stack apps, work in teams, and build real projects.',
-      type: 'education',
+      type: 'Education Background',
       highlights: ['Web development', 'APIs & Databases', 'Team projects'],
     },
     {
@@ -33,7 +33,7 @@ const Education: React.FC = () => {
       organization: 'Flatiron School',
       description:
         'Learned to run servers, manage cloud stuff, make CI/CD pipelines, and work with containers.',
-      type: 'education',
+      type: 'Education Background',
       highlights: [
         'Cloud (AWS, Azure, GCP)',
         'CI/CD pipelines',
@@ -47,7 +47,7 @@ const Education: React.FC = () => {
       title: 'AWS Solutions Architect',
       organization: 'Amazon Web Services',
       description: 'Got certified to build apps on AWS the right way.',
-      type: 'certification',
+      type: 'Certification',
       highlights: ['Cloud setup', 'Security', 'Cost saving'],
     },
   ];
@@ -94,7 +94,7 @@ const Education: React.FC = () => {
                         {item.year}
                       </span>
                       <span className="text-xs px-2 py-0.5 rounded-full bg-gray-700 text-white group-hover:bg-purple-500 transition-all duration-300">
-                        {item.type === 'education' ? 'School' : 'Certificate'}
+                        {item.type === 'Education Background' ? 'School' : 'Certificate'}
                       </span>
                     </div>
 
@@ -132,4 +132,4 @@ const Education: React.FC = () => {
   );
 };
 
-export default Education;
+export default EducationBackground;
