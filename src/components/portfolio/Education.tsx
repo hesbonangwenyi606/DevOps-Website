@@ -7,7 +7,6 @@ interface TimelineItem {
   description: string;
   type: 'education' | 'certification';
   highlights: string[];
-  color: string;
 }
 
 const Education: React.FC = () => {
@@ -17,7 +16,7 @@ const Education: React.FC = () => {
       title: 'DevOps Program',
       organization: 'Flatiron School',
       description:
-        'Learned how to run servers, manage cloud stuff, make CI/CD pipelines, and work with containers.',
+        'Learned to run servers, manage cloud stuff, make CI/CD pipelines, and work with containers.',
       type: 'education',
       highlights: [
         'Cloud (AWS, Azure, GCP)',
@@ -26,7 +25,6 @@ const Education: React.FC = () => {
         'Infra as Code',
         'Monitoring systems',
       ],
-      color: 'from-blue-500 to-purple-600',
     },
     {
       year: '2025',
@@ -35,7 +33,6 @@ const Education: React.FC = () => {
       description: 'Got certified to build apps on AWS the right way.',
       type: 'certification',
       highlights: ['Cloud setup', 'Security', 'Cost saving'],
-      color: 'from-orange-400 to-orange-600',
     },
     {
       year: '2024',
@@ -44,7 +41,6 @@ const Education: React.FC = () => {
       description: 'Learned to code full-stack apps, work in teams, and build real projects.',
       type: 'education',
       highlights: ['Web development', 'APIs & Databases', 'Team projects'],
-      color: 'from-purple-400 to-pink-500',
     },
     {
       year: '2024',
@@ -53,26 +49,16 @@ const Education: React.FC = () => {
       description: 'Learned how to containerize apps and run them safely.',
       type: 'certification',
       highlights: ['Containers', 'Docker images', 'Security'],
-      color: 'from-blue-400 to-cyan-500',
     },
     {
       year: '2019 – 2023',
       title: 'Computer Science',
       organization: 'Multimedia University of Kenya',
-      description: 'Studied the basics of computers, programming, and software.',
+      description: 'Studied programming, software, and computer basics.',
       type: 'education',
       highlights: ['Programming', 'Data & Algorithms', 'Software design'],
-      color: 'from-green-400 to-teal-500',
     },
   ];
-
-  // Build a gradient string for the timeline line
-  const gradientStops = timeline
-    .map((item) => {
-      const colors = item.color.split('to-').map((c) => c.trim());
-      return colors.map((c) => `var(--tw-gradient-${c})`).join(', ');
-    })
-    .join(', ');
 
   return (
     <section id="education" className="py-20 bg-slate-950">
@@ -80,22 +66,17 @@ const Education: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-3">
-            School & Certifications
+            School & Certificates
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Stuff I learned and certificates I got
+            What I learned and the certificates I got
           </p>
         </div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Gradient Timeline Line */}
-          <div
-            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px"
-            style={{
-              background: `linear-gradient(to bottom, ${gradientStops})`,
-            }}
-          />
+          {/* Black Timeline Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-900" />
 
           <div className="space-y-12">
             {timeline.map((item, index) => (
@@ -105,16 +86,8 @@ const Education: React.FC = () => {
                   index % 2 === 0 ? 'md:flex-row-reverse' : ''
                 }`}
               >
-                {/* Dot with gradient */}
-                <div
-                  className={`absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full ring-4 ring-slate-950 z-10`}
-                  style={{
-                    background: `linear-gradient(135deg, ${item.color
-                      .split('to-')
-                      .map((c) => `var(--tw-gradient-${c.trim()})`)
-                      .join(', ')})`,
-                  }}
-                ></div>
+                {/* Black Dot */}
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-gray-900 ring-4 ring-slate-950 z-10" />
 
                 {/* Card */}
                 <div
@@ -122,9 +95,7 @@ const Education: React.FC = () => {
                     index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
                   }`}
                 >
-                  <div
-                    className={`rounded-xl p-6 border border-slate-700 bg-gradient-to-r ${item.color} bg-opacity-20 hover:bg-opacity-40 transition-all duration-300`}
-                  >
+                  <div className="rounded-xl p-6 border border-gray-800 bg-gray-900 hover:bg-gray-800 transition-all duration-300">
                     {/* Year & Type */}
                     <div className="flex items-center gap-3 mb-3">
                       <span className="text-sm font-semibold text-white">
@@ -133,23 +104,17 @@ const Education: React.FC = () => {
                       <span
                         className={`text-xs px-2 py-0.5 rounded-full ${
                           item.type === 'education'
-                            ? 'bg-green-500/20 text-green-400'
-                            : 'bg-blue-500/20 text-blue-400'
+                            ? 'bg-gray-700 text-white'
+                            : 'bg-gray-700 text-white'
                         }`}
                       >
-                        {item.type === 'education'
-                          ? 'School'
-                          : 'Certificate'}
+                        {item.type === 'education' ? 'School' : 'Certificate'}
                       </span>
                     </div>
 
                     {/* Title & Organization */}
-                    <h3 className="text-lg font-bold text-white mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-purple-400 text-sm mb-3">
-                      {item.organization}
-                    </p>
+                    <h3 className="text-lg font-bold text-white mb-1">{item.title}</h3>
+                    <p className="text-gray-400 text-sm mb-3">{item.organization}</p>
 
                     {/* Description */}
                     <p className="text-gray-300 text-sm mb-4">{item.description}</p>
@@ -159,7 +124,7 @@ const Education: React.FC = () => {
                       {item.highlights.map((h, i) => (
                         <span
                           key={i}
-                          className="text-xs px-2 py-1 bg-slate-800/50 rounded"
+                          className="text-xs px-2 py-1 bg-gray-800 rounded"
                         >
                           {h}
                         </span>
