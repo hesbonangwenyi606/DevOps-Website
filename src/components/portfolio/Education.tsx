@@ -7,81 +7,61 @@ interface TimelineItem {
   description: string;
   type: 'education' | 'certification';
   highlights: string[];
-  color: string; // gradient for card and dot
+  color: string;
 }
 
 const Education: React.FC = () => {
   const timeline: TimelineItem[] = [
     {
       year: '2025',
-      title: 'DevOps Engineering Program',
+      title: 'DevOps Program',
       organization: 'Flatiron School',
       description:
-        'Completed a focused DevOps engineering program covering cloud infrastructure, CI/CD pipelines, container orchestration, infrastructure as code, and monitoring.',
+        'Learned how to run servers, manage cloud stuff, make CI/CD pipelines, and work with containers.',
       type: 'education',
       highlights: [
-        'Cloud infrastructure (AWS, Azure, GCP)',
-        'CI/CD & automation',
-        'Containers & Kubernetes',
-        'Infrastructure as Code (Terraform, Ansible)',
-        'Monitoring & observability',
+        'Cloud (AWS, Azure, GCP)',
+        'CI/CD pipelines',
+        'Docker & Kubernetes',
+        'Infra as Code',
+        'Monitoring systems',
       ],
       color: 'from-blue-500 to-purple-600',
     },
     {
       year: '2025',
-      title: 'AWS Solutions Architect – Associate',
+      title: 'AWS Solutions Architect',
       organization: 'Amazon Web Services',
-      description:
-        'Validated ability to design and deploy secure, scalable, and highly available systems on AWS.',
+      description: 'Got certified to build apps on AWS the right way.',
       type: 'certification',
-      highlights: [
-        'Cloud architecture',
-        'Security best practices',
-        'Cost optimization',
-      ],
+      highlights: ['Cloud setup', 'Security', 'Cost saving'],
       color: 'from-orange-400 to-orange-600',
     },
     {
       year: '2024',
-      title: 'Software Engineering Program',
+      title: 'Software Engineering',
       organization: 'Moringa School',
-      description:
-        'Completed an intensive software engineering program focused on full-stack development, APIs, databases, and collaborative product development.',
+      description: 'Learned to code full-stack apps, work in teams, and build real projects.',
       type: 'education',
-      highlights: [
-        'Full-stack web development',
-        'REST APIs & databases',
-        'Agile & team projects',
-      ],
+      highlights: ['Web development', 'APIs & Databases', 'Team projects'],
       color: 'from-purple-400 to-pink-500',
     },
     {
       year: '2024',
-      title: 'Docker Certified Associate',
+      title: 'Docker Certified',
       organization: 'Docker Inc.',
-      description:
-        'Validated knowledge of containerization, Docker images, networking, and security fundamentals.',
+      description: 'Learned how to containerize apps and run them safely.',
       type: 'certification',
-      highlights: [
-        'Containerization',
-        'Image optimization',
-        'Docker security',
-      ],
+      highlights: ['Containers', 'Docker images', 'Security'],
       color: 'from-blue-400 to-cyan-500',
     },
     {
       year: '2019 – 2023',
-      title: 'Bachelor of Science in Computer Science',
+      title: 'Computer Science',
       organization: 'Multimedia University of Kenya',
-      description:
-        'Studied core computer science concepts including data structures, algorithms, software engineering, databases, operating systems, and computer networks.',
+      description: 'Studied the basics of computers, programming, and software.',
       type: 'education',
-      highlights: [
-        'Data structures & algorithms',
-        'Software engineering principles',
-        'Databases & operating systems',
-      ],
+      highlights: ['Programming', 'Data & Algorithms', 'Software design'],
       color: 'from-green-400 to-teal-500',
     },
   ];
@@ -89,7 +69,6 @@ const Education: React.FC = () => {
   // Build a gradient string for the timeline line
   const gradientStops = timeline
     .map((item) => {
-      // Convert Tailwind colors to CSS variables
       const colors = item.color.split('to-').map((c) => c.trim());
       return colors.map((c) => `var(--tw-gradient-${c})`).join(', ');
     })
@@ -101,10 +80,10 @@ const Education: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-3">
-            Education & Certifications
+            School & Certifications
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Academic background and industry-recognized credentials
+            Stuff I learned and certificates I got
           </p>
         </div>
 
@@ -159,8 +138,8 @@ const Education: React.FC = () => {
                         }`}
                       >
                         {item.type === 'education'
-                          ? 'Education'
-                          : 'Certification'}
+                          ? 'School'
+                          : 'Certificate'}
                       </span>
                     </div>
 
