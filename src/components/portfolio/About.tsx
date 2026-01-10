@@ -10,7 +10,7 @@ const About: React.FC = () => {
         </svg>
       ),
       title: 'Fast Learner',
-      description: 'Quick to adapt and master new technologies and methodologies',
+      description: 'Quickly adapt and master new technologies and methodologies',
     },
     {
       icon: (
@@ -19,7 +19,7 @@ const About: React.FC = () => {
         </svg>
       ),
       title: 'Security First',
-      description: 'Implementing DevSecOps practices from day one',
+      description: 'Implementing DevSecOps practices and secure coding standards',
     },
     {
       icon: (
@@ -28,7 +28,7 @@ const About: React.FC = () => {
         </svg>
       ),
       title: 'Team Player',
-      description: 'Collaborative approach to solving complex infrastructure challenges',
+      description: 'Collaborative approach to solving infrastructure and software challenges',
     },
     {
       icon: (
@@ -36,8 +36,17 @@ const About: React.FC = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
       ),
-      title: 'Automation Expert',
-      description: 'Passionate about automating repetitive tasks and workflows',
+      title: 'Automation & Coding',
+      description: 'Passionate about automating tasks and writing clean, maintainable code',
+    },
+    {
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      ),
+      title: 'Full-Stack Development',
+      description: 'Experience building web applications with React, Node.js, Express, and REST APIs',
     },
   ];
 
@@ -70,19 +79,19 @@ const About: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Passionate About{' '}
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Building Infrastructure
+                DevOps & Software Engineering
               </span>
             </h2>
 
             <div className="space-y-4 text-gray-400 text-lg mb-8">
               <p>
-                I'm Hesbon Angwenyi, a DevOps Engineer and Cloud Architect passionate about designing and managing scalable, resilient infrastructure. I specialize in automating workflows, implementing CI/CD pipelines, and optimizing cloud systems to help teams deliver software faster and more reliably.
+                I'm Hesbon Angwenyi, a DevOps Engineer and Software Developer passionate about designing and managing scalable, resilient infrastructure and building efficient web applications. I specialize in automating workflows, implementing CI/CD pipelines, and writing clean, maintainable code.
               </p>
               <p>
-                My experience includes containerization, Kubernetes orchestration, Terraform infrastructure as code, cloud platforms like AWS, Azure, and GCP, and monitoring & observability solutions. I thrive on solving complex challenges and improving operational efficiency.
+                My experience spans containerization, Kubernetes orchestration, Terraform infrastructure as code, cloud platforms like AWS, Azure, and GCP, monitoring & observability, as well as frontend and backend development with React, Node.js, Express, and RESTful APIs.
               </p>
               <p>
-                Beyond coding and automation, I enjoy mentoring peers, contributing to open-source projects, and staying ahead of emerging cloud and DevOps technologies.
+                Beyond coding and automation, I enjoy mentoring peers, contributing to open-source projects, and exploring emerging DevOps and software engineering technologies.
               </p>
             </div>
 
