@@ -69,6 +69,10 @@ const Skills: React.FC = () => {
       ? skills
       : skills.filter(skill => skill.category.includes(activeCategory));
 
+  // Helper to check if a skill is DevOps-related
+  const isDevOps = (skill: Skill) =>
+    skill.category.some(cat => ['cloud', 'containers', 'cicd', 'iac', 'monitoring', 'scripting'].includes(cat));
+
   return (
     <section id="skills" className="py-20 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4">
@@ -76,7 +80,7 @@ const Skills: React.FC = () => {
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-white mb-3">Skills & Technologies</h2>
           <p className="text-gray-400">
-            Core DevOps tools and cloud technologies for building scalable infrastructure
+            DevOps-first tools, cloud technologies, and essential software skills
           </p>
         </div>
 
@@ -102,20 +106,23 @@ const Skills: React.FC = () => {
           {filteredSkills.map(skill => (
             <div
               key={skill.name}
-              className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 
-                         hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/30
-                         hover:-translate-y-2 hover:scale-105 transition-all duration-300"
+              className={`bg-slate-800/50 rounded-xl p-4 border border-slate-700 
+                          hover:-translate-y-2 hover:scale-105 transition-all duration-300 
+                          ${isDevOps(skill) ? 'hover:border-blue-400 hover:shadow-blue-400/50 hover:shadow-xl' : 'hover:border-purple-500/50 hover:shadow-purple-500/30'}`}
             >
               {/* Icon with glow/pulse effect */}
-              <div className="text-3xl mb-2 transition-transform duration-300 group-hover:scale-125 group-hover:animate-pulse">
+              <div
+                className={`text-3xl mb-2 transition-transform duration-300 ${
+                  isDevOps(skill)
+                    ? 'group-hover:scale-125 group-hover:animate-pulse text-blue-400'
+                    : 'group-hover:scale-110'
+                }`}
+              >
                 {skill.icon}
               </div>
               <h3 className="text-white text-sm font-semibold mb-2">{skill.name}</h3>
               <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                <div
-                  className={`h-full bg-gradient-to-r ${skill.color}`}
-                  style={{ width: `${skill.proficiency}%` }}
-                />
+                <div className={`h-full bg-gradient-to-r ${skill.color}`} style={{ width: `${skill.proficiency}%` }} />
               </div>
               <p className="text-xs text-gray-400 mt-1">{skill.proficiency}%</p>
             </div>
