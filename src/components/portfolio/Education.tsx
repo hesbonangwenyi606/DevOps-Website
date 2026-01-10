@@ -60,7 +60,7 @@ const Education: React.FC = () => {
           <h2 className="text-4xl font-bold text-white mb-3">
             Background Education
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-100 max-w-5xl mx-auto">
              Skills & Achievements
           </p>
         </div>
@@ -68,7 +68,7 @@ const Education: React.FC = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Neon Purple Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-900 shadow-[0_0_20px_rgba(128,0,255,0.5)]" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-500 shadow-[0_0_20px_rgba(128,0,255,0.5)]" />
 
           <div className="space-y-12">
             {timeline.map((item, index) => (
