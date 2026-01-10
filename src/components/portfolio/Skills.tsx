@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 
-type SkillCategory = 'all' | 'devops' | 'software';
+type SkillCategory =
+  | 'all'
+  | 'cloud'
+  | 'containers'
+  | 'cicd'
+  | 'iac'
+  | 'monitoring'
+  | 'scripting'
+  | 'software';
 
 interface Skill {
   name: string;
@@ -15,27 +23,45 @@ const Skills: React.FC = () => {
 
   const categories: { id: SkillCategory; label: string }[] = [
     { id: 'all', label: 'All Skills' },
-    { id: 'devops', label: 'DevOps / Cloud' },
-    { id: 'software', label: 'Software / Full-Stack' },
+    { id: 'cloud', label: 'Cloud' },
+    { id: 'containers', label: 'Containers' },
+    { id: 'cicd', label: 'CI/CD' },
+    { id: 'iac', label: 'IaC' },
+    { id: 'monitoring', label: 'Monitoring' },
+    { id: 'scripting', label: 'Scripting' },
+    { id: 'software', label: 'Software' },
   ];
 
   const skills: Skill[] = [
-    // DevOps / Cloud Skills
-    { name: 'Docker', icon: '🐳', category: ['devops'], proficiency: 90, color: 'from-blue-400 to-cyan-500' },
-    { name: 'Kubernetes', icon: '☸️', category: ['devops'], proficiency: 85, color: 'from-blue-500 to-indigo-600' },
-    { name: 'CI/CD Pipelines', icon: '⚡', category: ['devops'], proficiency: 90, color: 'from-green-400 to-green-600' },
-    { name: 'AWS', icon: '☁️', category: ['devops'], proficiency: 80, color: 'from-orange-400 to-orange-600' },
-    { name: 'Terraform', icon: '🏗️', category: ['devops'], proficiency: 85, color: 'from-purple-500 to-purple-700' },
-    { name: 'Prometheus', icon: '📊', category: ['devops'], proficiency: 80, color: 'from-orange-500 to-red-500' },
-    { name: 'Grafana', icon: '📈', category: ['devops'], proficiency: 80, color: 'from-orange-400 to-yellow-500' },
-    { name: 'Python', icon: '🐍', category: ['devops'], proficiency: 85, color: 'from-blue-400 to-yellow-500' },
-    { name: 'Bash', icon: '💻', category: ['devops'], proficiency: 80, color: 'from-green-500 to-green-700' },
+    // Cloud
+    { name: 'AWS', icon: '☁️', category: ['cloud'], proficiency: 90, color: 'from-orange-400 to-orange-600' },
+    { name: 'Azure', icon: '☁️', category: ['cloud'], proficiency: 70, color: 'from-blue-400 to-blue-600' },
+    { name: 'GCP', icon: '☁️', category: ['cloud'], proficiency: 65, color: 'from-green-400 to-green-600' },
 
-    // Software / Full-Stack Skills
-    { name: 'Node.js', icon: '🟢', category: ['software'], proficiency: 80, color: 'from-green-400 to-green-600' },
-    { name: 'Express.js', icon: '🚂', category: ['software'], proficiency: 75, color: 'from-gray-500 to-gray-700' },
-    { name: 'React.js', icon: '⚛️', category: ['software'], proficiency: 80, color: 'from-blue-400 to-blue-600' },
-    { name: 'REST APIs', icon: '🔗', category: ['software'], proficiency: 85, color: 'from-purple-400 to-purple-600' },
+    // Containers
+    { name: 'Docker', icon: '🐳', category: ['containers'], proficiency: 90, color: 'from-blue-400 to-cyan-500' },
+    { name: 'Kubernetes', icon: '☸️', category: ['containers'], proficiency: 85, color: 'from-blue-500 to-indigo-600' },
+
+    // CI/CD
+    { name: 'GitHub Actions', icon: '⚡', category: ['cicd'], proficiency: 85, color: 'from-gray-600 to-gray-800' },
+    { name: 'Jenkins', icon: '🔧', category: ['cicd'], proficiency: 80, color: 'from-red-500 to-red-700' },
+
+    // Infrastructure as Code
+    { name: 'Terraform', icon: '🏗️', category: ['iac'], proficiency: 85, color: 'from-purple-500 to-purple-700' },
+    { name: 'Ansible', icon: '📜', category: ['iac'], proficiency: 80, color: 'from-red-500 to-red-700' },
+
+    // Monitoring
+    { name: 'Prometheus', icon: '📊', category: ['monitoring'], proficiency: 85, color: 'from-orange-500 to-red-500' },
+    { name: 'Grafana', icon: '📈', category: ['monitoring'], proficiency: 90, color: 'from-orange-400 to-yellow-500' },
+
+    // Scripting
+    { name: 'Python', icon: '🐍', category: ['scripting'], proficiency: 85, color: 'from-blue-400 to-yellow-500' },
+    { name: 'Bash', icon: '💻', category: ['scripting'], proficiency: 90, color: 'from-green-500 to-green-700' },
+
+    // Software / Full-Stack Essentials (minimal, just for context)
+    { name: 'Node.js', icon: '🟢', category: ['software'], proficiency: 75, color: 'from-green-400 to-green-600' },
+    { name: 'REST APIs', icon: '🔗', category: ['software'], proficiency: 80, color: 'from-purple-400 to-purple-600' },
+    { name: 'SQL / PostgreSQL', icon: '🗄️', category: ['software'], proficiency: 70, color: 'from-blue-400 to-blue-600' },
   ];
 
   const filteredSkills =
@@ -48,11 +74,9 @@ const Skills: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-3">
-            Skills & Technologies
-          </h2>
+          <h2 className="text-4xl font-bold text-white mb-3">Skills & Technologies</h2>
           <p className="text-gray-400">
-            Core tools and technologies for DevOps, Cloud, and Full-Stack Development
+            Core DevOps tools and cloud technologies for building scalable infrastructure
           </p>
         </div>
 
