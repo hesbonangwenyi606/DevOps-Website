@@ -5,12 +5,28 @@ interface TimelineItem {
   title: string;
   organization: string;
   description: string;
-  type: 'education' | 'certification';
+  type: 'Education Background';
   highlights: string[];
 }
 
 const Education: React.FC = () => {
   const timeline: TimelineItem[] = [
+    {
+      year: '2019 – 2023',
+      title: 'Computer Science',
+      organization: 'Multimedia University of Kenya',
+      description: 'Studied programming, software, and computer basics.',
+      type: 'education',
+      highlights: ['Programming', 'Data & Algorithms', 'Software design'],
+    },
+    {
+      year: '2024',
+      title: 'Software Engineering',
+      organization: 'Moringa School',
+      description: 'Learned to code full-stack apps, work in teams, and build real projects.',
+      type: 'education',
+      highlights: ['Web development', 'APIs & Databases', 'Team projects'],
+    },
     {
       year: '2025',
       title: 'DevOps Program',
@@ -33,30 +49,6 @@ const Education: React.FC = () => {
       description: 'Got certified to build apps on AWS the right way.',
       type: 'certification',
       highlights: ['Cloud setup', 'Security', 'Cost saving'],
-    },
-    {
-      year: '2024',
-      title: 'Software Engineering',
-      organization: 'Moringa School',
-      description: 'Learned to code full-stack apps, work in teams, and build real projects.',
-      type: 'education',
-      highlights: ['Web development', 'APIs & Databases', 'Team projects'],
-    },
-    {
-      year: '2024',
-      title: 'Docker Certified',
-      organization: 'Docker Inc.',
-      description: 'Learned how to containerize apps and run them safely.',
-      type: 'certification',
-      highlights: ['Containers', 'Docker images', 'Security'],
-    },
-    {
-      year: '2019 – 2023',
-      title: 'Computer Science',
-      organization: 'Multimedia University of Kenya',
-      description: 'Studied programming, software, and computer basics.',
-      type: 'education',
-      highlights: ['Programming', 'Data & Algorithms', 'Software design'],
     },
   ];
 
