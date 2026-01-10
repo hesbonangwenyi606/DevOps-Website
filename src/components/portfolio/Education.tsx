@@ -7,11 +7,11 @@ interface TimelineItem {
   description: string;
   type: 'education' | 'certification';
   highlights: string[];
+  color: string; // added gradient color
 }
 
 const Education: React.FC = () => {
   const timeline: TimelineItem[] = [
-    // Flatiron School - DevOps Engineering
     {
       year: '2025',
       title: 'DevOps Engineering Program',
@@ -26,39 +26,8 @@ const Education: React.FC = () => {
         'Infrastructure as Code (Terraform, Ansible)',
         'Monitoring & observability',
       ],
+      color: 'from-blue-500 to-purple-600',
     },
-
-    // Moringa School - Software Engineering
-    {
-      year: '2024',
-      title: 'Software Engineering Program',
-      organization: 'Moringa School',
-      description:
-        'Completed an intensive software engineering program focused on full-stack development, APIs, databases, and collaborative product development.',
-      type: 'education',
-      highlights: [
-        'Full-stack web development',
-        'REST APIs & databases',
-        'Agile & team projects',
-      ],
-    },
-
-    // Multimedia University - Computer Science
-    {
-      year: '2019 – 2023',
-      title: 'Bachelor of Science in Computer Science',
-      organization: 'Multimedia University of Kenya',
-      description:
-        'Studied core computer science concepts including data structures, algorithms, software engineering, databases, operating systems, and computer networks.',
-      type: 'education',
-      highlights: [
-        'Data structures & algorithms',
-        'Software engineering principles',
-        'Databases & operating systems',
-      ],
-    },
-
-    // Remaining Certifications
     {
       year: '2025',
       title: 'AWS Solutions Architect – Associate',
@@ -71,6 +40,21 @@ const Education: React.FC = () => {
         'Security best practices',
         'Cost optimization',
       ],
+      color: 'from-orange-400 to-orange-600',
+    },
+    {
+      year: '2024',
+      title: 'Software Engineering Program',
+      organization: 'Moringa School',
+      description:
+        'Completed an intensive software engineering program focused on full-stack development, APIs, databases, and collaborative product development.',
+      type: 'education',
+      highlights: [
+        'Full-stack web development',
+        'REST APIs & databases',
+        'Agile & team projects',
+      ],
+      color: 'from-purple-400 to-pink-500',
     },
     {
       year: '2024',
@@ -84,6 +68,21 @@ const Education: React.FC = () => {
         'Image optimization',
         'Docker security',
       ],
+      color: 'from-blue-400 to-cyan-500',
+    },
+    {
+      year: '2019 – 2023',
+      title: 'Bachelor of Science in Computer Science',
+      organization: 'Multimedia University of Kenya',
+      description:
+        'Studied core computer science concepts including data structures, algorithms, software engineering, databases, operating systems, and computer networks.',
+      type: 'education',
+      highlights: [
+        'Data structures & algorithms',
+        'Software engineering principles',
+        'Databases & operating systems',
+      ],
+      color: 'from-green-400 to-teal-500',
     },
   ];
 
@@ -122,10 +121,12 @@ const Education: React.FC = () => {
                     index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
                   }`}
                 >
-                  <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+                  <div
+                    className={`rounded-xl p-6 border border-slate-700 bg-gradient-to-r ${item.color} bg-opacity-20 hover:bg-opacity-40 transition-all duration-300`}
+                  >
                     {/* Year & Type */}
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="text-sm font-semibold text-purple-400">
+                      <span className="text-sm font-semibold text-white">
                         {item.year}
                       </span>
                       <span
@@ -150,16 +151,14 @@ const Education: React.FC = () => {
                     </p>
 
                     {/* Description */}
-                    <p className="text-gray-400 text-sm mb-4">
-                      {item.description}
-                    </p>
+                    <p className="text-gray-300 text-sm mb-4">{item.description}</p>
 
                     {/* Highlights */}
                     <div className="flex flex-wrap gap-2">
                       {item.highlights.map((h, i) => (
                         <span
                           key={i}
-                          className="text-xs px-2 py-1 bg-slate-700/50 rounded"
+                          className="text-xs px-2 py-1 bg-slate-800/50 rounded"
                         >
                           {h}
                         </span>
@@ -168,7 +167,7 @@ const Education: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Spacer for alternating layout */}
+                {/* Spacer */}
                 <div className="hidden md:block md:w-1/2" />
               </div>
             ))}
