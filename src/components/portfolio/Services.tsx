@@ -1,7 +1,16 @@
 import React from 'react';
 
+interface Service {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  features: string[];
+  github?: string;
+  demo?: string;
+}
+
 const Services: React.FC = () => {
-  const services = [
+  const services: Service[] = [
     {
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -11,7 +20,7 @@ const Services: React.FC = () => {
       title: 'Cloud Infrastructure',
       description: 'Design and implement scalable cloud architectures on AWS, Azure, and GCP with high availability and cost optimization.',
       features: ['Multi-cloud strategy', 'Cost optimization', 'High availability design'],
-      link: '#cloud-infra',
+      github: 'https://github.com/hesbonangwenyi/cloud-infra',
     },
     {
       icon: (
@@ -22,7 +31,7 @@ const Services: React.FC = () => {
       title: 'Container Orchestration',
       description: 'Deploy and manage containerized applications using Docker and Kubernetes with automated scaling and self-healing.',
       features: ['Kubernetes clusters', 'Docker optimization', 'Service mesh implementation'],
-      link: '#containers',
+      github: 'https://github.com/hesbonangwenyi/container-orchestration',
     },
     {
       icon: (
@@ -33,7 +42,7 @@ const Services: React.FC = () => {
       title: 'CI/CD Pipelines',
       description: 'Build automated deployment pipelines with testing, security scanning, and zero-downtime releases.',
       features: ['Automated testing', 'Security scanning', 'Blue-green deployments'],
-      link: '#cicd',
+      github: 'https://github.com/hesbonangwenyi/cicd-automation',
     },
     {
       icon: (
@@ -44,7 +53,7 @@ const Services: React.FC = () => {
       title: 'Infrastructure as Code',
       description: 'Manage infrastructure using Terraform and Ansible for reproducible, version-controlled environments.',
       features: ['Terraform modules', 'Ansible playbooks', 'GitOps workflows'],
-      link: '#iac',
+      github: 'https://github.com/hesbonangwenyi/iac-projects',
     },
     {
       icon: (
@@ -55,7 +64,7 @@ const Services: React.FC = () => {
       title: 'Monitoring & Observability',
       description: 'Implement comprehensive monitoring with Prometheus, Grafana, and distributed tracing for full visibility.',
       features: ['Real-time metrics', 'Custom dashboards', 'Alerting systems'],
-      link: '#monitoring',
+      github: 'https://github.com/hesbonangwenyi/observability-stack',
     },
     {
       icon: (
@@ -66,14 +75,14 @@ const Services: React.FC = () => {
       title: 'DevSecOps',
       description: 'Integrate security into the development lifecycle with automated scanning and compliance checks.',
       features: ['Vulnerability scanning', 'Compliance automation', 'Secret management'],
-      link: '#devsecops',
+      github: 'https://github.com/hesbonangwenyi/devsecops',
     },
   ];
 
   return (
     <section className="py-20 lg:py-32 bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
             <span className="text-purple-300 text-sm font-medium">What I Do</span>
@@ -124,31 +133,19 @@ const Services: React.FC = () => {
                 ))}
               </ul>
 
-              {/* Learn More Button */}
-              <a
-                href={service.link}
-                className="mt-6 inline-block px-6 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
-              >
-                Learn More
-              </a>
+              {/* GitHub Button */}
+              {service.github && (
+                <a
+                  href={service.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-block px-6 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300"
+                >
+                  View on GitHub
+                </a>
+              )}
             </div>
           ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-400 mb-6">
-            Ready to optimize your infrastructure and accelerate your development workflow?
-          </p>
-          <button
-            onClick={() => {
-              const element = document.getElementById('hero');
-              if (element) element.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold text-lg hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-1"
-          >
-            Let's Work Together
-          </button>
         </div>
       </div>
     </section>
