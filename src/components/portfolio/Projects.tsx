@@ -94,7 +94,7 @@ const Projects: React.FC = () => {
     : projects.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" className="py-20 lg:py-32 bg-slate-900">
+    <section id="projects" className="py-20 lg:py-32 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -128,7 +128,8 @@ const Projects: React.FC = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10"
+              onClick={() => setSelectedProject(project)}
+              className="cursor-pointer group bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10"
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -136,7 +137,7 @@ const Projects: React.FC = () => {
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-purple-500/80 text-white text-xs font-medium rounded-full">
                     {project.category.toUpperCase()}
@@ -155,6 +156,79 @@ const Projects: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Modal */}
+      {selectedProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-slate-900 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-slate-700">
+            {/* Modal Header */}
+            <div className="relative h-64">
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-full object-cover rounded-t-2xl"
+              />
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 w-10 h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              <span className="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-medium rounded-full">
+                {selectedProject.category.toUpperCase()}
+              </span>
+              <h3 className="text-2xl font-bold text-white mt-4 mb-4">
+                {selectedProject.title}
+              </h3>
+              <p className="text-gray-300 mb-4">{selectedProject.longDescription}</p>
+
+              <h4 className="text-white font-semibold mb-2">Key Highlights</h4>
+              <ul className="mb-4 list-disc list-inside text-gray-300">
+                {selectedProject.highlights.map((h, i) => (
+                  <li key={i}>{h}</li>
+                ))}
+              </ul>
+
+              <h4 className="text-white font-semibold mb-2">Technologies Used</h4>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {selectedProject.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 bg-purple-500/20 text-gray-300 text-xs rounded-full border border-purple-500/30"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex gap-4">
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 px-6 py-3 bg-slate-800 text-white rounded-lg font-medium text-center hover:bg-slate-700 transition-colors"
+                >
+                  View on GitHub
+                </a>
+                <a
+                  href={selectedProject.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium text-center hover:shadow-lg hover:shadow-purple-500/30 transition-all"
+                >
+                  Live Demo
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
